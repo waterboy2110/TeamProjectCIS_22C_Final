@@ -1,0 +1,105 @@
+Curry House
+10350 
+S De Anza Blvd
+Japanese
+$$
+Philz Coffee
+20686
+Stevens Creek Blvd
+Coffee
+$
+Thai Square Restaurant
+21267 
+Stevens Creek Blvd
+Thai
+$$
+Donut Wheel
+10250 
+N De Anza Blvd
+Donuts
+$
+SmokeEaters
+10650 
+S De Anza Blvd
+Chicken wings
+$$
+Yiassoo
+10660 
+S De Anza Blvd
+Greek
+$
+Bitter+Sweet
+20560
+Town Center Ln
+Coffee
+$$
+212 New York Pizza
+19998
+Homestead Rd
+Pizza
+$
+Aijito
+7335 
+Bollinger Rd
+Japanese
+$$
+Beard Papa's
+19748 
+Stevens Creek Blvd
+Desserts
+$
+Gochi Japanese Fusion Tapas
+19980
+E Homestead Rd
+Japanese 
+$$$
+One Pot Shabu Shabu
+19648 
+Stevens Creek Blvd
+Japanese
+$$
+Fantasia Coffee & Tea
+10933 
+N Wolfe Rd
+Coffee
+$
+Chipotle Mexican Grill
+10385 
+S De Anza Blvd
+Mexican
+$
+Alexander's Steakhouse
+10330 
+N Wolfe Rd
+Steakhouses
+$$$$
+Rio Adobe Southwest Cafe
+10525 
+S De Anza Blvd
+Mexican
+$
+Ike's Lair
+21000
+Stevens Creek Blvd
+Sandwiches
+$$
+La Terra Bakery & Cafe
+19960
+Homestead Rd
+Bakeries
+$$
+Spring Rice & Crawfish
+10123
+N Wolfe Rd
+Seafood
+$
+Bobbie's Cafe
+1361 
+S De Anza Blvd
+Breakfast
+$$
+Wingstop
+19620
+Stevens Creek Blvd
+Chicken wings
+$$
