@@ -1,31 +1,44 @@
-//**************************************************************************************************
-// Specification file for hash table
-//**************************************************************************************************
+//***********************************************************************************************************
+// Specification file for hash class
+//***********************************************************************************************************
 
-#ifndef Project_Hash_h
-#define Project_Hash_h
+#ifndef Project_3_9_Hash_h
+#define Project_3_9_Hash_h
 
+#include <string>
+#include <iostream>
 #include "CollisionTable.h"
 #include "RestaurantInfo.h"
+using namespace std;
 
-//********************************************************
-// Hash table
-// For array of hash tables
-//********************************************************
-class hashTable
+#define nullptr 0
+
+struct hashTable
+{
+    restaurantInfo *aRestaurant = nullptr;    // Pointer to a restaurant
+    int numRestaurants = 0;                   // Number of restaurants in hash table
+    collisionTable *aCollision = nullptr;     // Pointer to collision table
+};
+
+class Hash
 {
 private:
-    //restaurantInfo* aRestaurant;    // Pointer to a restaurant
-    int numRestaurants;             // Number of restaurants in hash table
-    //collisionTable* aCollision;     // Pointer to collision table
+    hashTable *hashAryPtr;
     
 public:
-    int hashFunction(int tNum);
-    bool search();
-    bool getnumRestaurants(int aNumRestaurants);
-    //bool getcollisionTable (collisionTable* aCollision);
+    // Constructor
+    Hash();
     
-};// End hashTable
+    // Deconstructor
+    //~Hash();
+    
+    // Hash operations
+    int hashFunction(int tNum);
+    bool insertHash(int hashNum, restaurantInfo *tRestaruant);
+    bool searchHash();
+    bool deleteHash(int tStreetNum);
+
+};
 
 #endif
 

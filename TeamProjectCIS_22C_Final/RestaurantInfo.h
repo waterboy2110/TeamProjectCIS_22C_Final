@@ -1,18 +1,23 @@
-//**************************************************************************************************
-// Specification file for restaurant information
-//**************************************************************************************************
+//***************************************************************************************
+// Specification file for restaurantInfo class
+//
+// Restaurant info - street number, name, street, type, and cost
+//***************************************************************************************
 
-#ifndef Project_RestaurantInfo_h
-#define Project_RestaurantInfo_h
+//***********************************************************************************************************
+// THINGS TO CHANGE:
+//
+// - Insert costType string
+// - Change constructor for cost type 
+// - Deconstructor
+//***********************************************************************************************************
 
-#include <string>
-#include "RestaurantTypes.h"
-#include "Streets.h"
-#include <iostream>
-using namespace std;
+#ifndef Project_3_9_RestaurantInfo_h
+#define Project_3_9_RestaurantInfo_h
 
-//const string costType[4] = {"$","$$", "$$$", "$$$$"};
-/*
+#include "StreetList.h"
+#include "TypeList.h"
+
 //********************************************************
 // Restaurant info - Street number, name, street, type,
 // and cost
@@ -22,19 +27,18 @@ class restaurantInfo
 private:
     string name;            // Restaurant name
     int number;             // Street number
-    streetList *streetPtr;  // Street pointer
-    typeList *typePtr;      // Type pointer
-    //costType *costPtr;      // Cost pointer
+    string streetName;      // Street 
+    string type;            // Type 
+    //costType *costPtr;    // Cost
+    
 public:
     // Constructor
-    restaurantInfo();
-    restaurantInfo(string aName, int aNumber, streetList *aStreetPtr,
-                   typeList *aTypePtr);
+    restaurantInfo(string aName, int aNumber, string aStreet, string aType);
     
     // Restaurant info functions
-    bool getName(string &aName) const;
-    bool getNumber(string &aNumber) const;
+    string getName() const;
+    int getNumber() const;
     
 };// End restaurantInfo
-*/
+
 #endif

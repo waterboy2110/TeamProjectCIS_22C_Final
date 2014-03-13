@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E53C5CC18CECAF6005D4D1A /* TeamProjectCIS_22C_Final.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E53C5CB18CECAF6005D4D1A /* TeamProjectCIS_22C_Final.1 */; };
-		3E53C5D618CECBAC005D4D1A /* Hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E53C5D518CECBAC005D4D1A /* Hash.cpp */; };
-		3E53C5DA18CECBCB005D4D1A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E53C5D918CECBCB005D4D1A /* main.cpp */; };
+		3E4F0E7618D1332E00B79CC8 /* TypeList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F0E7518D1332E00B79CC8 /* TypeList.cpp */; };
+		3E4F0E7918D1334C00B79CC8 /* StreetList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F0E7818D1334C00B79CC8 /* StreetList.cpp */; };
+		3E4F0E7C18D1335C00B79CC8 /* ListHead.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F0E7B18D1335C00B79CC8 /* ListHead.cpp */; };
+		3E4F0E7E18D1336300B79CC8 /* RestaurantInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F0E7D18D1336300B79CC8 /* RestaurantInfo.cpp */; };
+		3E4F0E8118D1337200B79CC8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F0E8018D1337200B79CC8 /* main.cpp */; };
+		3E4F0E8418D1338100B79CC8 /* Hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F0E8318D1338100B79CC8 /* Hash.cpp */; };
+		3E4F0E8618D1338800B79CC8 /* CollisionTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F0E8518D1338800B79CC8 /* CollisionTable.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -19,25 +23,26 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				3E53C5CC18CECAF6005D4D1A /* TeamProjectCIS_22C_Final.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3E4F0E7518D1332E00B79CC8 /* TypeList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TypeList.cpp; sourceTree = "<group>"; };
+		3E4F0E7718D1333B00B79CC8 /* StreetList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreetList.h; sourceTree = "<group>"; };
+		3E4F0E7818D1334C00B79CC8 /* StreetList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StreetList.cpp; sourceTree = "<group>"; };
+		3E4F0E7A18D1335500B79CC8 /* TypeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeList.h; sourceTree = "<group>"; };
+		3E4F0E7B18D1335C00B79CC8 /* ListHead.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ListHead.cpp; sourceTree = "<group>"; };
+		3E4F0E7D18D1336300B79CC8 /* RestaurantInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RestaurantInfo.cpp; sourceTree = "<group>"; };
+		3E4F0E7F18D1336B00B79CC8 /* ListHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListHead.h; sourceTree = "<group>"; };
+		3E4F0E8018D1337200B79CC8 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		3E4F0E8218D1337900B79CC8 /* Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hash.h; sourceTree = "<group>"; };
+		3E4F0E8318D1338100B79CC8 /* Hash.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hash.cpp; sourceTree = "<group>"; };
+		3E4F0E8518D1338800B79CC8 /* CollisionTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionTable.cpp; sourceTree = "<group>"; };
+		3E4F0E8718D1339000B79CC8 /* CollisionTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionTable.h; sourceTree = "<group>"; };
+		3E4F0E8818D1341500B79CC8 /* RestaurantInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantInfo.h; sourceTree = "<group>"; };
 		3E53C5C618CECAF6005D4D1A /* TeamProjectCIS_22C_Final */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TeamProjectCIS_22C_Final; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E53C5CB18CECAF6005D4D1A /* TeamProjectCIS_22C_Final.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = TeamProjectCIS_22C_Final.1; sourceTree = "<group>"; };
-		3E53C5D218CECB93005D4D1A /* BinaryNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinaryNode.h; sourceTree = "<group>"; };
-		3E53C5D318CECB9C005D4D1A /* BinarySearchTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinarySearchTree.h; sourceTree = "<group>"; };
-		3E53C5D418CECBA3005D4D1A /* CollisionTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionTable.h; sourceTree = "<group>"; };
-		3E53C5D518CECBAC005D4D1A /* Hash.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hash.cpp; sourceTree = "<group>"; };
-		3E53C5D718CECBB4005D4D1A /* Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hash.h; sourceTree = "<group>"; };
-		3E53C5D818CECBC2005D4D1A /* ListHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListHead.h; sourceTree = "<group>"; };
-		3E53C5D918CECBCB005D4D1A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		3E53C5DB18CECBD2005D4D1A /* RestaurantInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantInfo.h; sourceTree = "<group>"; };
-		3E53C5DC18CECBD9005D4D1A /* RestaurantTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantTypes.h; sourceTree = "<group>"; };
-		3E53C5DD18CECBE3005D4D1A /* Streets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Streets.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,17 +75,19 @@
 		3E53C5C818CECAF6005D4D1A /* TeamProjectCIS_22C_Final */ = {
 			isa = PBXGroup;
 			children = (
-				3E53C5DD18CECBE3005D4D1A /* Streets.h */,
-				3E53C5DC18CECBD9005D4D1A /* RestaurantTypes.h */,
-				3E53C5DB18CECBD2005D4D1A /* RestaurantInfo.h */,
-				3E53C5D918CECBCB005D4D1A /* main.cpp */,
-				3E53C5D818CECBC2005D4D1A /* ListHead.h */,
-				3E53C5D718CECBB4005D4D1A /* Hash.h */,
-				3E53C5D518CECBAC005D4D1A /* Hash.cpp */,
-				3E53C5D418CECBA3005D4D1A /* CollisionTable.h */,
-				3E53C5D318CECB9C005D4D1A /* BinarySearchTree.h */,
-				3E53C5D218CECB93005D4D1A /* BinaryNode.h */,
-				3E53C5CB18CECAF6005D4D1A /* TeamProjectCIS_22C_Final.1 */,
+				3E4F0E8818D1341500B79CC8 /* RestaurantInfo.h */,
+				3E4F0E8718D1339000B79CC8 /* CollisionTable.h */,
+				3E4F0E8518D1338800B79CC8 /* CollisionTable.cpp */,
+				3E4F0E8318D1338100B79CC8 /* Hash.cpp */,
+				3E4F0E8218D1337900B79CC8 /* Hash.h */,
+				3E4F0E8018D1337200B79CC8 /* main.cpp */,
+				3E4F0E7F18D1336B00B79CC8 /* ListHead.h */,
+				3E4F0E7D18D1336300B79CC8 /* RestaurantInfo.cpp */,
+				3E4F0E7B18D1335C00B79CC8 /* ListHead.cpp */,
+				3E4F0E7A18D1335500B79CC8 /* TypeList.h */,
+				3E4F0E7818D1334C00B79CC8 /* StreetList.cpp */,
+				3E4F0E7718D1333B00B79CC8 /* StreetList.h */,
+				3E4F0E7518D1332E00B79CC8 /* TypeList.cpp */,
 			);
 			path = TeamProjectCIS_22C_Final;
 			sourceTree = "<group>";
@@ -136,8 +143,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E53C5DA18CECBCB005D4D1A /* main.cpp in Sources */,
-				3E53C5D618CECBAC005D4D1A /* Hash.cpp in Sources */,
+				3E4F0E7E18D1336300B79CC8 /* RestaurantInfo.cpp in Sources */,
+				3E4F0E7918D1334C00B79CC8 /* StreetList.cpp in Sources */,
+				3E4F0E8618D1338800B79CC8 /* CollisionTable.cpp in Sources */,
+				3E4F0E7618D1332E00B79CC8 /* TypeList.cpp in Sources */,
+				3E4F0E8418D1338100B79CC8 /* Hash.cpp in Sources */,
+				3E4F0E8118D1337200B79CC8 /* main.cpp in Sources */,
+				3E4F0E7C18D1335C00B79CC8 /* ListHead.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +257,7 @@
 				3E53C5D118CECAF6005D4D1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

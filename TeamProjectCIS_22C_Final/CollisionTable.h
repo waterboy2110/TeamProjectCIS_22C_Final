@@ -1,23 +1,39 @@
-//**************************************************************************************************
-// Specification file for collision table
-//**************************************************************************************************
+//***************************************************************************************
+// Specification file for collisionTable class
+//***************************************************************************************
 
-#ifndef Project_CollisionTable_h
-#define Project_CollisionTable_h
+#ifndef Project_3_9_CollisionTable_h
+#define Project_3_9_CollisionTable_h
 
+//#include "Hash.h"
 #include "RestaurantInfo.h"
+
 /*
-//********************************************************
-// Collision table for hash table
-//********************************************************
+struct collisionNode
+{
+    restaurantInfo* cRestaurant;    // Pointer to restaurant info
+    collisionNode* nextC;          // Pointer to next restaurant info
+};*/
+
 class collisionTable
 {
 private:
-    restaurantInfo* cRestaurant;    // Pointer to restaurant info
-    collisionTable* nextC;          // Pointer to next restaurant info
+    restaurantInfo *cRestaurant;    // Pointer to restaurant info
+    collisionTable *nextC;          // Pointer to next restaurant info    
+    
 public:
-    bool getNextC(collisionTable* nextC)const;
-    bool setNextC(collisionTable*);
+    // Constructors
+    collisionTable();
+    collisionTable(restaurantInfo *collisionPtr);
+    
+    // Collision table operations
+    bool insertCollision(restaurantInfo *collisionPtr, int hashNum, collisionTable *&ptr);
+    bool deleteCollision(int tStreetNum, collisionTable *ptr);
+    restaurantInfo* getLastCollision(collisionTable *ptr);
+    restaurantInfo* getRestaurantInfo();
+    //bool getNextC(collisionTable* nextC)const;
+    //bool setNextC(collisionTable*);
+    
 };// End collisionTable
-*/
+
 #endif
