@@ -4,12 +4,6 @@
 
 #include "RestaurantInfo.h"
 
-/*    restaurantInfo(string aName, int aNumber, streetList *aStreetPtr, typeList *aTypePtr);
- 
- // Restaurant info functions
- bool getName(string &aName) const;
- bool getNumber(string &aNumber) const;*/
-
 //***************************************************************************************
 // Constructor
 //***************************************************************************************
@@ -41,3 +35,15 @@ int restaurantInfo::getNumber() const
     return number;
     
 }// End getNumber
+
+//***************************************************************************************
+// Definition of displayRestaurant
+//
+//***************************************************************************************
+void restaurantInfo::displayRestaurant() const
+{
+    cout << "      - " << name << " " << number << " " << streetName << " " << type << endl;
+    
+}// End displayRestaurant
+
+

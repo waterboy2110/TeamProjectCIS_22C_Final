@@ -7,8 +7,8 @@
 //***********************************************************************************************************
 // THINGS TO CHANGE:
 //
-// - Add pointers to hash and BST
-// - Read in array size? Or created specifically? -> Send array size to Hash class constructor
+// X Add pointers to hash and BST
+// X Read in array size? Or created specifically? -> Send array size to Hash class constructor
 //***********************************************************************************************************
 
 //***********************************************************************************************************
@@ -17,14 +17,17 @@
 listHead::listHead(int aArraySize)
 {
     // Store hash table size
-    //arraySize = aArraySize;
-    arraySize = 21;
+    arraySize = aArraySize;
     
-    // Create hash table and store in listHead
-    //Hash *aHashPtr;
-    //aHashPtr = new Hash[aArraySize];
-    hashPtr =  new Hash[21];
+    // Initialize number of restaurants stored
+    numRestaurants = 0;
     
+    // Create hash table and store in listHead    
+    hashPtr = new Hash(aArraySize);
+    
+    // Create binary search tree and store in listHead
+    //BSTPtr = new BinarySearchTree();
+        
     //hashPtr[0]->getNumRestaurants();
 }
 //***********************************************************************************************************
@@ -37,10 +40,35 @@ int listHead::getNumRestaurants() const
 }
 
 //***********************************************************************************************************
+// Definition of addNumRestaurants
+//
+//***********************************************************************************************************
+void listHead::addNumRestaurants()
+{
+    numRestaurants++;
+}
+
+//***********************************************************************************************************
+// Definition of subNumRestaurants()
+//
+//***********************************************************************************************************
+void listHead::subNumRestaurants()
+{
+    numRestaurants--;
+}
+
+//***********************************************************************************************************
 // Definition of getHashPtr
 //
 //***********************************************************************************************************
 Hash* listHead::getHashPtr() const
 {
     return hashPtr;
+}
+
+//***********************************************************************************************************
+// Definition of getBSTPtr
+BinarySearchTree* listHead::getBSTPtr() const
+{
+    return BSTPtr;
 }

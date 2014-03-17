@@ -38,6 +38,7 @@ public:
     // Restaurant info functions
     string getName() const;
     int getNumber() const;
+    void displayRestaurant() const;
     
 };// End restaurantInfo
 

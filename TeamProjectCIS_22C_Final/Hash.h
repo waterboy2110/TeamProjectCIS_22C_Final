@@ -7,11 +7,13 @@
 
 #include <string>
 #include <iostream>
+#include <iomanip>
 #include "CollisionTable.h"
 #include "RestaurantInfo.h"
 using namespace std;
 
 #define nullptr 0
+#define hashSize 53
 
 struct hashTable
 {
@@ -24,19 +26,23 @@ class Hash
 {
 private:
     hashTable *hashAryPtr;
+    int totalRestaurants;
     
 public:
     // Constructor
-    Hash();
+    Hash(int aSize);
     
     // Deconstructor
     //~Hash();
     
     // Hash operations
     int hashFunction(int tNum);
-    bool insertHash(int hashNum, restaurantInfo *tRestaruant);
-    bool searchHash();
-    bool deleteHash(int tStreetNum);
+    bool insertHash(restaurantInfo *tRestaruant);
+    bool deleteHash(int deleteNum);
+    bool searchHash(int searchNum);
+    void hashStatistics();
+    bool addHash(int addNum, restaurantInfo *addRestaruant);
+    void printHashTableSequence() const;
 
 };
 

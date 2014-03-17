@@ -5,7 +5,7 @@
 //***********************************************************************************************************
 // THINGS TO CHANGE:
 //
-// - Add BST pointer
+// X Add BST pointer
 // - Add deconstructor
 //***********************************************************************************************************
 
@@ -14,18 +14,17 @@
 
 #include "Hash.h"
 #include "RestaurantInfo.h"
+#include "BinarySearchTree.h"
 #include "CollisionTable.h"
 
-//#define arraySize 21
 
 class listHead
 {
 private:
-    //collisionTable *hi;
     int numRestaurants;  // Number of restaurants
     int arraySize;       // Size of hash table
     Hash *hashPtr;    // Pointer to the hash table
-    //binaryNode *BSTPtr; // Pointer to the binary search tree
+    BinarySearchTree *BSTPtr; // Pointer to the binary search tree
     
 public:
     // Constructor
@@ -33,7 +32,10 @@ public:
     
     // List Head operations
     int getNumRestaurants() const;
+    void addNumRestaurants();
+    void subNumRestaurants();
     Hash* getHashPtr() const;
+    BinarySearchTree* getBSTPtr() const;
     
 };// End listHead
 

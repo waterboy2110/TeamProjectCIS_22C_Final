@@ -14,6 +14,8 @@
 		3E4F0E8118D1337200B79CC8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F0E8018D1337200B79CC8 /* main.cpp */; };
 		3E4F0E8418D1338100B79CC8 /* Hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F0E8318D1338100B79CC8 /* Hash.cpp */; };
 		3E4F0E8618D1338800B79CC8 /* CollisionTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F0E8518D1338800B79CC8 /* CollisionTable.cpp */; };
+		3EC2D91818D791D000C24037 /* BinaryNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EC2D91718D791D000C24037 /* BinaryNode.cpp */; };
+		3EC2D91B18D791E100C24037 /* BinarySearchTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EC2D91A18D791E100C24037 /* BinarySearchTree.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +45,10 @@
 		3E4F0E8718D1339000B79CC8 /* CollisionTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionTable.h; sourceTree = "<group>"; };
 		3E4F0E8818D1341500B79CC8 /* RestaurantInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantInfo.h; sourceTree = "<group>"; };
 		3E53C5C618CECAF6005D4D1A /* TeamProjectCIS_22C_Final */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TeamProjectCIS_22C_Final; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EC2D91718D791D000C24037 /* BinaryNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinaryNode.cpp; sourceTree = "<group>"; };
+		3EC2D91918D791D800C24037 /* BinaryNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinaryNode.h; sourceTree = "<group>"; };
+		3EC2D91A18D791E100C24037 /* BinarySearchTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinarySearchTree.cpp; sourceTree = "<group>"; };
+		3EC2D91C18D791E800C24037 /* BinarySearchTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinarySearchTree.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,18 +81,22 @@
 		3E53C5C818CECAF6005D4D1A /* TeamProjectCIS_22C_Final */ = {
 			isa = PBXGroup;
 			children = (
-				3E4F0E8818D1341500B79CC8 /* RestaurantInfo.h */,
+				3E4F0E8018D1337200B79CC8 /* main.cpp */,
 				3E4F0E8718D1339000B79CC8 /* CollisionTable.h */,
 				3E4F0E8518D1338800B79CC8 /* CollisionTable.cpp */,
-				3E4F0E8318D1338100B79CC8 /* Hash.cpp */,
 				3E4F0E8218D1337900B79CC8 /* Hash.h */,
-				3E4F0E8018D1337200B79CC8 /* main.cpp */,
+				3E4F0E8318D1338100B79CC8 /* Hash.cpp */,
 				3E4F0E7F18D1336B00B79CC8 /* ListHead.h */,
-				3E4F0E7D18D1336300B79CC8 /* RestaurantInfo.cpp */,
 				3E4F0E7B18D1335C00B79CC8 /* ListHead.cpp */,
-				3E4F0E7A18D1335500B79CC8 /* TypeList.h */,
-				3E4F0E7818D1334C00B79CC8 /* StreetList.cpp */,
+				3E4F0E8818D1341500B79CC8 /* RestaurantInfo.h */,
+				3E4F0E7D18D1336300B79CC8 /* RestaurantInfo.cpp */,
 				3E4F0E7718D1333B00B79CC8 /* StreetList.h */,
+				3EC2D91C18D791E800C24037 /* BinarySearchTree.h */,
+				3EC2D91A18D791E100C24037 /* BinarySearchTree.cpp */,
+				3EC2D91918D791D800C24037 /* BinaryNode.h */,
+				3EC2D91718D791D000C24037 /* BinaryNode.cpp */,
+				3E4F0E7818D1334C00B79CC8 /* StreetList.cpp */,
+				3E4F0E7A18D1335500B79CC8 /* TypeList.h */,
 				3E4F0E7518D1332E00B79CC8 /* TypeList.cpp */,
 			);
 			path = TeamProjectCIS_22C_Final;
@@ -145,6 +155,8 @@
 			files = (
 				3E4F0E7E18D1336300B79CC8 /* RestaurantInfo.cpp in Sources */,
 				3E4F0E7918D1334C00B79CC8 /* StreetList.cpp in Sources */,
+				3EC2D91B18D791E100C24037 /* BinarySearchTree.cpp in Sources */,
+				3EC2D91818D791D000C24037 /* BinaryNode.cpp in Sources */,
 				3E4F0E8618D1338800B79CC8 /* CollisionTable.cpp in Sources */,
 				3E4F0E7618D1332E00B79CC8 /* TypeList.cpp in Sources */,
 				3E4F0E8418D1338100B79CC8 /* Hash.cpp in Sources */,

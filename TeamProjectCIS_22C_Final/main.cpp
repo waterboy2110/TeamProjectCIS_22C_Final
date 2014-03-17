@@ -1,69 +1,76 @@
-//***************************************************************************************
-// Christina Sok, Yenni Chu, James Agua                  3/9/14          Mac OS X - xCode
-// 
-// 
+//***********************************************************************************************************
+// Team Project - Restaurants in Cupertino (Group 3)                         3/9/14          Mac OS X - xCode
 //
-//***************************************************************************************
+// Christina Sok, Yenni Chu, James Agua    
+//
+//
+//***********************************************************************************************************
 
 //***********************************************************************************************************
 // THINGS TO ADD:
 //
 // - Check for cost type (valid)
-//
+// - Edit delete
+// - code searchBST manager
 //***********************************************************************************************************
 
 #include <iostream>
 #include <fstream>
+#include <stdlib.h>     
 #include "Hash.h"
 #include "ListHead.h"
 
 // Function prototypes
-bool readFile(Hash *aPtr);
-bool insertManager(listHead *aList);
-bool deleteManager(listHead *aList);
+bool readFile(listHead *aList);
+void insertManager(listHead *aList);
+void deleteManager(listHead *aList);
 bool searchHashManager(listHead *aList);
 bool searchBSTManager(listHead *aList);
-//bool listHashSequenceManager(listHead *aList);
-//bool listKeySequenceManager(listHead *aList);
-//bool printIndentedTreeManager(listHead *aList);
 bool writeFile(listHead *aList);
-bool hashStat(listHead *aList);
 void displayMenu();
 char getUserInput();
 void validateUserInput(char &tUserInput);
 void operationManager(listHead *aList, char tUserInput);
+int checkValidStreetNum(string num);
 
 int main()
 {
+    char input;
+    
     cout << "========= R E S T A U R A N T S   I N   C U P E R T I N O =========";
     
-    //listHead(15);
+    listHead *restaurants = new listHead(hashSize);
+
+    readFile(restaurants);
+    
+    restaurants->getHashPtr()->printHashTableSequence();
+    
+
+    // Display menu
+    displayMenu();
+    
+    // Get user's input
+    input = getUserInput();
+    
+    // While the user does not want to quit...
+    while (input != 'q')
+    {
+        // Call appropriate operation
+        operationManager(restaurants, input);
         
-    Hash *hashPtr;
-    hashPtr = new Hash();
+        // Get user's input
+        input = getUserInput();
+    }
+
     
-    readFile(hashPtr);
-    
-    int t;
-    cout << "to delete: ";
-    cin >> t;
-    
-    hashPtr->deleteHash(t);
-    
-    //hashPtr->displayHash();
-    
-    //displayMenu();
-    
-    //getUserInput();
-    
-    cout << "\n=================== E N D   O F   P R O G R A M ===================";
+    cout << "\n======================== T H A N K  Y O U =========================";
 }
 
-//***************************************************************************************
+//***********************************************************************************************************
 // Definition readFile
 //
-//***************************************************************************************
-bool readFile(Hash *aPtr)
+//***********************************************************************************************************
+bool readFile(listHead *aList)
 {
     ifstream inFile;
     string tName;       // Restaurant name
@@ -71,10 +78,6 @@ bool readFile(Hash *aPtr)
     string tStreetName; // Street name
     string tType;       // Type
     string tCost;       // Cost
-    
-    int hashNum;
-    
-    int num = 0;
     
     // Open file
     inFile.open("Restaurants.txt");
@@ -98,18 +101,14 @@ bool readFile(Hash *aPtr)
             getline(inFile, tType);
             getline(inFile, tCost);
             
-            hashNum = aPtr->hashFunction(tStreetNum);
-            
-            //cout << "\nHash Number: " << hashNum;
-            
-            //    restaurantInfo(string aName, int aNumber, streetList aStreet, typeList aType);
+            // Create restaurant object
             restaurantInfo *tRestPtr = new restaurantInfo(tName, tStreetNum, tStreetName, tType);
             
-            cout << "\nRestaurant name: " << tRestPtr->getName() << " " << hashNum;
+            // Insert new restaurant to hash and BST
+            aList->getHashPtr()->insertHash(tRestPtr);
+            //aList->getBSTPtr()->addNode(tRestPtr);
             
-            aPtr->insertHash(hashNum, tRestPtr);
-            
-            num++;
+            aList->addNumRestaurants();
             
         }// End while
     }// End if
@@ -120,43 +119,162 @@ bool readFile(Hash *aPtr)
     return true;
 }// End readFile
 
-//***************************************************************************************
+//***********************************************************************************************************
 // Definition insertManager
 //
-//***************************************************************************************
-bool insertManager (listHead *aList)
+//***********************************************************************************************************
+void insertManager(listHead *aList)
 {
     string tName;
     int tNumber;
     string tStreet;
     string tType;
+    bool status;
     
     cout << endl;
     cout << "\n========================= I - I N S E R T =========================";
     
-    cout << "\nEnter restaurant name: ";
+    // Get restaurant information from user
+    cout << "\n\nEnter restaurant name: ";
     getline(cin, tName);
-    
-    //getline, check
     cout << "\nEnter street number: ";
-    cin >> tNumber;
-    
+    getline(cin, tStreet);
+    tNumber = checkValidStreetNum(tStreet); // Validate street number
     cout << "\nEnter street name: ";
     getline(cin, tStreet);
-    
     cout << "\nEnter type: ";
     getline(cin, tType);
-    
     //cout << "\nEnter cost: ";
     //getline(cin, tCost);
-    return true;
+    
+    // Create restaurant 
+    restaurantInfo* addPtr = new restaurantInfo(tName, tNumber, tStreet, tType);
+    
+    // Insert hash
+    status = aList->getHashPtr()->insertHash(addPtr);
+    
+    // If a restaurant with the entered street number does not exist
+    // add to the BST. (Street number = unique). 
+    if (status) 
+    {
+        // Insert BST
+        aList->getBSTPtr()->addNode(addPtr);
+        
+        // Update number of restaurants in listHead (add 1)
+        aList->addNumRestaurants();
+        
+        cout << endl << addPtr->getName() << " has been added successully!\n";
+    }
 
+    cout << "\n===================================================================\n";
+
+    return;
 }
 
-//***************************************************************************************
+//***********************************************************************************************************
+// Definition of deleteManager
+//
+//***********************************************************************************************************
+void deleteManager(listHead *aList)
+{
+    string input;
+    bool status;
+    char choice[2];
+    
+    cout << endl;
+    cout << "\n========================= D - D E L E T E =========================";
+    
+    cout << "\n\nEnter N to delete by number or S t delete by restaurant name: ";
+    getline(cin, input);
+    
+    // Get lowercase equivalent of user's input
+    choice[0] = tolower(input[0]);
+    
+    // If the user wants to delete by number...
+    if (choice[0] == 'n')
+    {
+        cout << "\nEnter the number of the restaurant to delete: ";
+        getline(cin, input);
+        
+        // Delete from hash table
+        status = aList->getHashPtr()->deleteHash(atoi(input.c_str()));
+        
+        if (status)
+        {
+            // Insert delete BST
+            
+            // Update number of restaurants in listHead (subtract 1)
+            aList->subNumRestaurants();
+        }
+        else
+        {
+            // If the user wants to delete by name...
+            if (choice[0] == 's')
+            {
+                cout << "\nEnter the name of the restaurant to delete: ";
+                getline(cin, input);
+                
+                // Delete BST status = aList->getBSTPtr()->
+                // If exists delete from hash
+            }
+            else
+            {
+                cout << "\nYou have entered an invalid letter.";
+                
+            }// End if
+            
+        }// End if
+
+    }// End if
+
+    cout << "\n===================================================================\n";
+    
+    return;
+}// End deleteManager
+
+//***********************************************************************************************************
+// Definition of searchHashManager
+//
+//***********************************************************************************************************
+bool searchHashManager(listHead *aList)
+{
+    string streetNum;
+    int tempNum;
+    
+    cout << endl;
+    cout << "\n========================== P - S E A R C H ========================";
+    cout << "\n=================== ( S T R E E T   N U M B E R ) =================";
+    
+    cout << "\n\nEnter street number: ";
+    getline(cin, streetNum);
+    
+    // Validate street number
+    tempNum = checkValidStreetNum(streetNum);
+    
+    // Search hash
+    aList->getHashPtr()->searchHash(atoi(streetNum.c_str()));
+    
+    cout << "\n===================================================================\n";
+    
+    return true;
+}// End searchHashManager
+
+//***********************************************************************************************************
+// Definition of searchBSTManager
+//
+//***********************************************************************************************************
+//
+//
+//
+//
+//
+//
+//
+
+//***********************************************************************************************************
 // Definition displayMenu
 //
-//***************************************************************************************
+//***********************************************************************************************************
 void displayMenu()
 {
     cout << endl;
@@ -169,59 +287,151 @@ void displayMenu()
     cout << "\n=  H - List data in hash table sequence                           =";
     cout << "\n=  T - Print indented tree                                        =";
     cout << "\n=  S - Print hash statistics                                      =";
+    cout << "\n=  M - Display menu                                               =";         
     cout << "\n=  Q - Quit                                                       =";
     cout << "\n===================================================================\n";
 
 }// End displayMenu
 
-//***************************************************************************************
+//***********************************************************************************************************
 // Definition getUserInput
 //
-//***************************************************************************************
+//***********************************************************************************************************
 char getUserInput()
 {
     string userInput;
     
+    cout << endl;
     cout << "\n======================== U S E R  I N P U T =======================";
-    cout << "\nEnter a letter: ";
+    cout << "\n\nEnter a letter (to display menu, enter the letter 'm'): ";
     getline(cin, userInput);
     
+    // Validate the user's input
     validateUserInput(userInput[0]);
     
-    cout << "===================================================================\n";
+    cout << "\n===================================================================\n";
 
+    // Return user's input
     return userInput[0];
+    
 }// End getUserInput
 
-//***************************************************************************************
+//***********************************************************************************************************
 // Definition validateUserInput
 //
-//***************************************************************************************
+//***********************************************************************************************************
 void validateUserInput(char &tUserInput)
 {
     string userInput;
     tUserInput = tolower(tUserInput);
     
+    // While the input is not valid....
     while (tUserInput != 'i' & tUserInput != 'd' & tUserInput != 'p' & tUserInput != 'n'
            & tUserInput != 'k' & tUserInput != 'h' & tUserInput != 't' & tUserInput != 's'
-           & tUserInput != 'q')
+           & tUserInput != 'q' & tUserInput != 'm')
     {
         cout << "\nYou have entered an invalid letter.";
         cout << "\nPlease enter a letter: ";
         getline(cin, userInput);
-        tUserInput = userInput[0];
+        tUserInput = tolower(userInput[0]);
+        
     }// End while
     
 }// End validateUserInput
 
-//***************************************************************************************
+//***********************************************************************************************************
 // Definition operationManager
 //
-//***************************************************************************************
+//***********************************************************************************************************
 void operationManager(listHead *aList, char tUserInput)
 {
     if (tUserInput == 'i')
     {
-        //aList->getHashPtr->insertHash();
+        insertManager(aList);
     }
+    else
+    {
+        if (tUserInput == 'd')
+        {
+            deleteManager(aList);
+        }
+        else
+        {
+            if (tUserInput == 'p')
+            {
+                searchHashManager(aList);
+            }
+            else
+            {
+                if (tUserInput == 'n')
+                {
+                    // Insert search bst manager
+                }
+                else
+                {
+                    if (tUserInput == 'k')
+                    {
+                        // Insert list data in street number sequence
+                    }
+                    else
+                    {
+                        if (tUserInput == 'h')
+                        {
+                            // Insert list data in hash table sequence
+                        }
+                        else
+                        {
+                            if (tUserInput == 't')
+                            {
+                                // Insert print indented tree
+                            }
+                            else
+                            {
+                                if (tUserInput == 's')
+                                {
+                                    // Display hash statistics
+                                    aList->getHashPtr()->hashStatistics();
+                                }
+                                else
+                                {
+                                    // Otherwise, display menu
+                                    displayMenu();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    return;
+}// End operation manager
+
+//***********************************************************************************************************
+// Definition of checkValidStreetNum
+//
+//***********************************************************************************************************
+int checkValidStreetNum(string num)
+{
+    int status;
+    
+    // Check for valid street number
+    status = num.find_first_not_of("0123456789");
+    
+    // If street number is not valid
+    while (status >= 0 || atoi(num.c_str()) < 0)
+    {
+        cout << "\nYou have entered an invalid street number.";
+        cout << "\nA valid street number contains only digits and is greater than 0.";
+        cout << "\nEnter street number: ";
+        getline(cin, num);
+        
+        // Check for valid street number
+        status = num.find_first_not_of("0123456789");
+        
+    }// End if
+
+    return atoi(num.c_str());
 }
