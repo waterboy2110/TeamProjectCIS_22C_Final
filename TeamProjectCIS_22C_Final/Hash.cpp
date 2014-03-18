@@ -10,9 +10,9 @@
 // X Display restaurants as they are added?
 // X Update number of restaurants in list head when adding restaurants and deleting restaurants
 //          (Done in main)
-// - Fix displays to show all restaurant information (this means adding more "get" functions in restaurant
+// X Fix displays to show all restaurant information (this means adding more "get" functions in restaurant
 //          header file)
-// - Change hash stat to the size of array from listhead (let it receive)
+// X Change hash stat to the size of array from listhead (let it receive)
 // X Add function: add only if the number does not already exist (unique key)
 //***********************************************************************************************************
 
@@ -114,10 +114,10 @@ bool Hash::insertHash(restaurantInfo *tRestaurant)
 // Definition of deleteHash
 //
 //***********************************************************************************************************
-bool Hash::deleteHash(int deleteNum)
+bool Hash::deleteHash(int deleteNum, string &deleteName)
 {
     int hashNum;
-    string deleteName;
+    //string deleteName;
     
     // Get the restaurant to be deleted's hash number
     hashNum = hashFunction(deleteNum);
@@ -238,9 +238,10 @@ void Hash::hashStatistics()
     int longestLL = 0;  // Longest linked-list
     int numNodes = 0;   // Number of nodes in linked-list
     int countLL = 0;    // To calculate average number of nodes in linked-list
-    
     double dis;
     
+    cout << endl;
+    cout << "\n================== H A S H   S T A T I S T I C S ==================\n";
     
     if (totalRestaurants == 0)
     {
@@ -267,7 +268,6 @@ void Hash::hashStatistics()
             if (hashAryPtr[i].numRestaurants > 1)
             {
                 numNodes += hashAryPtr[i].numRestaurants - 1;
-                cout << "\nNUM: " << numNodes;
                 countLL++;
             }
         }
@@ -276,10 +276,7 @@ void Hash::hashStatistics()
     
     // Switch to double
     dis = noCollision;
-    
-    cout << "\nNum Nodes in ll: " << numNodes;
-    cout << "\nCountLL : " << countLL;
-    
+        
     cout << "\nLoad factor: " << setprecision(1) << dis/totalRestaurants << "%";
     cout << "\nLongest linked-list: " << longestLL;
     
@@ -289,6 +286,7 @@ void Hash::hashStatistics()
     // Rounded up
     cout << "\nAverage number of nodes stored in linked-list: " << setprecision(1) << dis/countLL;
     
+    cout << "\n\n===================================================================\n";
 }
 
 //***********************************************************************************************************
@@ -336,28 +334,83 @@ bool Hash::addHash(int addNum, restaurantInfo *addRestaurant)
 //***********************************************************************************************************
 void Hash::printHashTableSequence() const
 {
+    cout << endl;
+    cout << "\n=========================== H - L I S T ===========================";
+    cout << "\n========== ( I N  H A S H   T A B L E   S E Q U E N C E) ==========\n\n";
+    
     if (totalRestaurants == 0)
     {
         cout << "\nThere are no restaurants to display.";
         return;
     }
-    else
+    
+    for (int i = 0; i < hashSize; i++)
     {
-        for (int i = 0; i < hashSize; i++)
+        if (hashAryPtr[i].numRestaurants > 0)
         {
-            if (hashAryPtr[i].numRestaurants != 0)
-            {
-                hashAryPtr[i].aRestaurant->displayRestaurant();
-                
-                if (hashAryPtr[i].numRestaurants > 1)
-                {
-                    hashAryPtr[i].aCollision->displayCollisionList(hashAryPtr[i].aCollision);
-                }
-            }
+            hashAryPtr[i].aRestaurant->displayRestaurant();
+        }
+        
+        if (hashAryPtr[i].numRestaurants > 1)
+        {
+            hashAryPtr[i].aCollision->displayCollisionList(hashAryPtr[i].aCollision);
         }
     }
+    
+    cout << "\n===================================================================\n";
 }
 
-
+//***********************************************************************************************************
+// Definition of printInKeySequence
+//
+//***********************************************************************************************************
+void Hash::printInKeySequence() const
+{
+    int current;
+    int walk;
+    int temp;
+    
+    cout << endl;
+    cout << "\n=========================== K - L I S T ===========================";
+    cout << "\n======== ( I N   K E Y   S E Q U E N C E  -  S O R T E D ) ========\n\n";
+    
+    if (totalRestaurants == 0)
+    {
+        cout << "\nThere are no restaurants to display.";
+        return;
+    }
+    
+    hashTable *tempArray = new hashTable[totalRestaurants];
+    
+    for (int i = 0; i < hashSize; i++)
+    {
+        if (hashAryPtr[i].numRestaurants > 0)
+        {
+            tempArray[i].aRestaurant = hashAryPtr[i].aRestaurant;
+        }
+        
+        if (hashAryPtr[i].numRestaurants > 1)
+        {
+            // Call collision to return restaurant
+        }
+        
+    }
+    
+    /**
+    for (current = 1; current < totalRestaurants; current++)
+    {
+        temp = hashAryPtr[current].aRestaurant->getNumber();
+        walk = current-1;
+        
+        while (walk >= 0 && temp < hashAryPtr[walk].aRestaurant->getNumber())
+        {
+            hashAryPtr[walk+1] = 
+        }
+    }**/
+    
+    delete [] tempArray;
+    
+    cout << "\n===================================================================\n";
+}
 
 

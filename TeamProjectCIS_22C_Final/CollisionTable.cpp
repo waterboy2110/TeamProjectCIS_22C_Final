@@ -1,64 +1,50 @@
-//***************************************************************************************
+//***********************************************************************************************************
 // Implementation file for CollisionTable class
-//***************************************************************************************
+//***********************************************************************************************************
 
-//***************************************************************************************
+//***********************************************************************************************************
 // THINGS TO CHANGE
 //
 // - make sure no unncecessary paramters (some you do not need to receive a poiinter like get fcns)
 // - remove unnecessary returns (a lot of bools)
-//***************************************************************************************
+//***********************************************************************************************************
 
 #include "CollisionTable.h"
 
-//***************************************************************************************
+//***********************************************************************************************************
 // Default constructor
-//***************************************************************************************
+//***********************************************************************************************************
 collisionTable::collisionTable()
 {
     cRestaurant = nullptr;
     nextC = nullptr;
+    
 }// End default constructor
 
-//***************************************************************************************
-// Constructor
-//***************************************************************************************
-/*
-collisionTable::collisionTable(restaurantInfo *collisionPtr)
-{
-    cRestaurant = collisionPtr; 
-    
-}// End constructor*/
-
-//***************************************************************************************
+//***********************************************************************************************************
 // Definition insertCollision
 //
-//***************************************************************************************
+//***********************************************************************************************************
 bool collisionTable::insertCollision(restaurantInfo *collisionPtr, int hashNum, collisionTable *&ptr)
 {
     collisionTable *newNode;             // A new node
     collisionTable *nodePtr;             // To traverse the list
-    collisionTable *previousNode = nullptr; // The previous node
+    collisionTable *previousNode;       // The previous node
     
-    // Allocate a new node and store countryIn there.
     newNode = new collisionTable;
     newNode->cRestaurant = collisionPtr;
     
-    // Position nodePtr at the head of list.
     nodePtr = ptr;
     
-    // Initialize previousNode to NULL.
     previousNode = nullptr;
     
-    // Skip all nodes whose value is less than code.
+
     while (nodePtr != nullptr)
     {
         previousNode = nodePtr;
         nodePtr = nodePtr->nextC;
     }
     
-    // If the new node is to be the 1st in the list,
-    // insert it before all other nodes.
     if (previousNode == nullptr)
     {
         ptr = newNode;
@@ -74,10 +60,10 @@ bool collisionTable::insertCollision(restaurantInfo *collisionPtr, int hashNum, 
 
 }// End insertCollision
 
-//***************************************************************************************
+//***********************************************************************************************************
 // Definition of deleteCollision
 //
-//***************************************************************************************
+//***********************************************************************************************************
 bool collisionTable::deleteCollision(int tStreetNum, collisionTable *ptr)
 {
     
@@ -113,33 +99,31 @@ bool collisionTable::deleteCollision(int tStreetNum, collisionTable *ptr)
         delete nodePtr;
     }
 
-    
-    
     return true;
 }
 
-//***************************************************************************************
+//***********************************************************************************************************
 // Definition of getLastCollision
 //
-//***************************************************************************************
+//***********************************************************************************************************
 restaurantInfo* collisionTable::getLastCollision(collisionTable *ptr)
 {
     return cRestaurant;
 }
 
 
-//***************************************************************************************
+//***********************************************************************************************************
 //
-//***************************************************************************************
+//***********************************************************************************************************
 restaurantInfo* collisionTable::getRestaurantInfo()
 {
     return cRestaurant;
 }
 
-//***************************************************************************************
+//***********************************************************************************************************
 // Definition of displayCollisionList
 //
-//***************************************************************************************
+//***********************************************************************************************************
 bool collisionTable::searchCollisionList(collisionTable *ptr, int searchNum)
 {
     collisionTable *pWalk;
@@ -149,7 +133,7 @@ bool collisionTable::searchCollisionList(collisionTable *ptr, int searchNum)
     {
         if (ptr->cRestaurant->getNumber() == searchNum)
         {
-            cout << "     - " <<  ptr->cRestaurant->getName() << endl;
+            ptr->cRestaurant->displayRestaurant();
         }
         
         ptr = ptr->nextC;
@@ -158,9 +142,9 @@ bool collisionTable::searchCollisionList(collisionTable *ptr, int searchNum)
     return true;
 }
 
-//***************************************************************************************
+//***********************************************************************************************************
 //
-//***************************************************************************************
+//***********************************************************************************************************
 bool collisionTable::searchForAdd(collisionTable *ptr, int addNum)
 {
     collisionTable *pWalk;
@@ -179,9 +163,10 @@ bool collisionTable::searchForAdd(collisionTable *ptr, int addNum)
     return true;
 }
 
-//***************************************************************************************
+//***********************************************************************************************************
+// Definition of displayCollisionList
 //
-//***************************************************************************************
+//***********************************************************************************************************
 void collisionTable::displayCollisionList(collisionTable *ptr)
 {
     collisionTable *pWalk;
@@ -190,9 +175,17 @@ void collisionTable::displayCollisionList(collisionTable *ptr)
     while (ptr != nullptr)
     {
         pWalk->cRestaurant->displayRestaurant();
-        
         ptr = ptr->nextC;
     }
 }
 
-
+//***********************************************************************************************************
+// Definition of returnRestaurant
+//
+//***********************************************************************************************************
+//restaurantInfo* collisionTable::returnRestaurant(collisionTable *&ptr)
+//{
+    
+  //  return
+    
+//}

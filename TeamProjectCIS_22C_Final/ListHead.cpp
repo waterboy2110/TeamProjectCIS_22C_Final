@@ -1,6 +1,6 @@
-//***************************************************************************************
+//***********************************************************************************************************
 // Implementation file for ListHead class
-//***************************************************************************************
+//***********************************************************************************************************
 
 #include "ListHead.h"
 
@@ -26,7 +26,7 @@ listHead::listHead(int aArraySize)
     hashPtr = new Hash(aArraySize);
     
     // Create binary search tree and store in listHead
-    //BSTPtr = new BinarySearchTree();
+    BSTPtr = new BinarySearchTree();
         
     //hashPtr[0]->getNumRestaurants();
 }

@@ -2,8 +2,8 @@
 //  BinaryNode.cpp
 //  Project 3.9
 //
-//  Created by Christina Dee Sok on 3/16/14.
-//  Copyright (c) 2014 Christina Sok. All rights reserved.
+//  Created by Yenni Chu on 3/11/14.
+//  Copyright (c) 2014 Yenni Chu. All rights reserved.
 //
 
 #include "BinaryNode.h"

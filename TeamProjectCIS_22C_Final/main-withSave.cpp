@@ -32,9 +32,7 @@ char getUserInput();
 void validateUserInput(char &tUserInput);
 void operationManager(listHead *aList, char tUserInput);
 int checkValidStreetNum(string num);
-void PrintIndentedTreeManager(listHead *aList);
-bool searchBSTManager(listHead *aList);
-
+bool saveToFile(listHead *);
 
 int main()
 {
@@ -46,6 +44,9 @@ int main()
 
     readFile(restaurants);
     
+    restaurants->getHashPtr()->printHashTableSequence();
+    
+
     // Display menu
     displayMenu();
     
@@ -61,6 +62,8 @@ int main()
         // Get user's input
         input = getUserInput();
     }
+
+    saveToFile(restaurants);
     
     cout << "\n======================== T H A N K  Y O U =========================";
 }
@@ -76,7 +79,7 @@ bool readFile(listHead *aList)
     int tStreetNum;     // Street number
     string tStreetName; // Street name
     string tType;       // Type
-    //string tCost;       // Cost
+    string tCost;       // Cost
     
     // Open file
     inFile.open("Restaurants.txt");
@@ -98,18 +101,16 @@ bool readFile(listHead *aList)
             tStreetNum = atoi(tType.c_str());
             getline(inFile, tStreetName);
             getline(inFile, tType);
-            //getline(inFile, tCost);
+            getline(inFile, tCost);
             
             // Create restaurant object
             restaurantInfo *tRestPtr = new restaurantInfo(tName, tStreetNum, tStreetName, tType);
-                        
+            
             // Insert new restaurant to hash and BST
             aList->getHashPtr()->insertHash(tRestPtr);
-            aList->getBSTPtr()->addNode(tRestPtr);
+            //aList->getBSTPtr()->addNode(tRestPtr);
             
             aList->addNumRestaurants();
-            
-            //tRestPtr->displayRestaurant();
             
         }// End while
     }// End if
@@ -131,7 +132,7 @@ void insertManager(listHead *aList)
     string tStreet;
     string tType;
     bool status;
-    //string tCost;//@@@@@@@@@@@@@
+    
     cout << endl;
     cout << "\n========================= I - I N S E R T =========================";
     
@@ -145,18 +146,18 @@ void insertManager(listHead *aList)
     getline(cin, tStreet);
     cout << "\nEnter type: ";
     getline(cin, tType);
-    //cout << "\nEnter cost: "; //@@@@@@@@@@@@@
-    // getline(cin, tCost);
+    //cout << "\nEnter cost: ";
+    //getline(cin, tCost);
     
-    // Create restaurant
+    // Create restaurant 
     restaurantInfo* addPtr = new restaurantInfo(tName, tNumber, tStreet, tType);
     
     // Insert hash
     status = aList->getHashPtr()->insertHash(addPtr);
     
     // If a restaurant with the entered street number does not exist
-    // add to the BST. (Street number = unique).
-    if (status)
+    // add to the BST. (Street number = unique). 
+    if (status) 
     {
         // Insert BST
         aList->getBSTPtr()->addNode(addPtr);
@@ -166,9 +167,9 @@ void insertManager(listHead *aList)
         
         cout << endl << addPtr->getName() << " has been added successully!\n";
     }
-    
+
     cout << "\n===================================================================\n";
-    
+
     return;
 }
 
@@ -181,7 +182,6 @@ void deleteManager(listHead *aList)
     string input;
     bool status;
     char choice[2];
-    string name;
     
     cout << endl;
     cout << "\n========================= D - D E L E T E =========================";
@@ -199,7 +199,7 @@ void deleteManager(listHead *aList)
         getline(cin, input);
         
         // Delete from hash table
-        status = aList->getHashPtr()->deleteHash(atoi(input.c_str()), name);
+        status = aList->getHashPtr()->deleteHash(atoi(input.c_str()));
         
         if (status)
         {
@@ -208,38 +208,30 @@ void deleteManager(listHead *aList)
             // Update number of restaurants in listHead (subtract 1)
             aList->subNumRestaurants();
         }
-        
-        
-    }// End if
-    
-    
-    // If the user wants to delete by name...
-    else if (choice[0] == 's')
-    {
-        cout << "\nEnter the name of the restaurant to delete: ";
-        getline(cin, input);
-        
-        // Delete BST
-        aList->getBSTPtr()->remove(input, aList->getHashPtr());
-        
-        //bool deleteByName = aList->getBSTPtr()->remove(input, aList->getHashPtr());
-       /* if(!deleteByName)
+        else
         {
-            cout << "Cannot delete '" << input << "'. PLease try again "<<endl;
-        }
-       */ 
-    }
-    else
-    {
-        cout << "\nYou have entered an invalid letter.";
-        
+            // If the user wants to delete by name...
+            if (choice[0] == 's')
+            {
+                cout << "\nEnter the name of the restaurant to delete: ";
+                getline(cin, input);
+                
+                // Delete BST status = aList->getBSTPtr()->
+                // If exists delete from hash
+            }
+            else
+            {
+                cout << "\nYou have entered an invalid letter.";
+                
+            }// End if
+            
+        }// End if
+
     }// End if
-    
-    
+
     cout << "\n===================================================================\n";
     
     return;
-
 }// End deleteManager
 
 //***********************************************************************************************************
@@ -270,6 +262,18 @@ bool searchHashManager(listHead *aList)
 }// End searchHashManager
 
 //***********************************************************************************************************
+// Definition of searchBSTManager
+//
+//***********************************************************************************************************
+//
+//
+//
+//
+//
+//
+//
+
+//***********************************************************************************************************
 // Definition displayMenu
 //
 //***********************************************************************************************************
@@ -281,11 +285,10 @@ void displayMenu()
     cout << "\n=  D - Delete data                                                =";
     cout << "\n=  P - Search using street number                                 =";
     cout << "\n=  N - Search using restaurant name                               =";
-    //cout << "\n=  K - List data in street number sequence                        =";
-    //cout << "\n=  H - List data in hash table sequence                           =";
+    cout << "\n=  K - List data in street number sequence                        =";
+    cout << "\n=  H - List data in hash table sequence                           =";
     cout << "\n=  T - Print indented tree                                        =";
-    //cout << "\n=  S - Print hash statistics                                      =";
-    //insert save to ouput
+    cout << "\n=  S - Print hash statistics                                      =";
     cout << "\n=  M - Display menu                                               =";         
     cout << "\n=  Q - Quit                                                       =";
     cout << "\n===================================================================\n";
@@ -364,8 +367,7 @@ void operationManager(listHead *aList, char tUserInput)
             {
                 if (tUserInput == 'n')
                 {
-                    searchBSTManager(aList);
-
+                    // Insert search bst manager
                 }
                 else
                 {
@@ -377,14 +379,13 @@ void operationManager(listHead *aList, char tUserInput)
                     {
                         if (tUserInput == 'h')
                         {
-                            aList->getHashPtr()->printHashTableSequence();
-
+                            // Insert list data in hash table sequence
                         }
                         else
                         {
                             if (tUserInput == 't')
                             {
-                                aList->getBSTPtr()->printIndentedList( aList->getBSTPtr()->getroot(),0);
+                                // Insert print indented tree
                             }
                             else
                             {
@@ -436,38 +437,48 @@ int checkValidStreetNum(string num)
 
     return atoi(num.c_str());
 }
-void PrintIndentedTreeManager(listHead* aList)
+
+//**************************************************
+// Definition of function saveToFile.
+// This function will read all the data from
+// the file.
+// Really should have put this in the cpp file
+// but since ListNode is private I didn't have
+// access. Well - I think.
+//**************************************************
+bool saveToFile(listHead *restaurants)
 {
-    aList->getBSTPtr()->printIndentedList( aList->getBSTPtr()->getroot(),0);
-}
-
-
-
-
-
-
-bool searchBSTManager(listHead *aList)
-{
-    string SearchName;
-    cout<< "Please enter the Restaurant Name: "<<endl;
-    getline(cin, SearchName);
+    cout << "DEBUG in save\n";
+    ofstream outFile;
+    string fileName ="Restaurants2.txt";
+    bool success = true;
     
-    BinaryNode* tempNode = aList->getBSTPtr()->SearchName(aList->getBSTPtr()-> getroot(), SearchName);
-    
-    if(tempNode==nullptr)
+    // Open file to write, if couldn't open, display error
+    // and exit with false
+    outFile.open(fileName);
+    if (!outFile)
     {
-        cout << SearchName << " is not found"<<endl;
+        cout << "Error opening " << fileName << "!\n";
         return false;
     }
     
-    while(tempNode!= nullptr)
+    restaurants->getHashPtr()->printHashTableSequence();
+    
+    
+/*
+    ListNode<T> *nodePtr;  // To move through the list.
+	nodePtr = sentinel;		// Position nodePtr to the sentinel.
+    
+    while (nodePtr)
     {
-        tempNode->getrestaurantInfo()->displayRestaurant();
-        tempNode = aList->getBSTPtr()->SearchName(tempNode->getRightChildPtr(), SearchName);
-        
+        outFile << nodePtr->value << endl;	// Write to the file.
+        nodePtr = nodePtr->next;				// Move to the next node.
     }
+  */  
+    outFile.close();
+    
+    if (!success)
+        return false;
+    
     return true;
-    
-    
-    
 }

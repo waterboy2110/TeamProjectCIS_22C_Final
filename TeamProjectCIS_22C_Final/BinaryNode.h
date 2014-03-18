@@ -2,12 +2,12 @@
 //  BinaryNode.h
 //  Project 3.9
 //
-//  Created by Christina Dee Sok on 3/16/14.
-//  Copyright (c) 2014 Christina Sok. All rights reserved.
+//  Created by Yenni Chu on 3/11/14.
+//  Copyright (c) 2014 Yenni Chu. All rights reserved.
 //
 
-#ifndef Project_3_9_BinaryNode_h
-#define Project_3_9_BinaryNode_h
+#ifndef __Project_3_9__BinaryNode__
+#define __Project_3_9__BinaryNode__
 
 #include <iostream>
 #include "RestaurantInfo.h"
@@ -36,5 +36,7 @@ public:
     // BinaryNode();
     
 };
+
+
 
 #endif

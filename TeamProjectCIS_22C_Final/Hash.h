@@ -38,12 +38,12 @@ public:
     // Hash operations
     int hashFunction(int tNum);
     bool insertHash(restaurantInfo *tRestaruant);
-    bool deleteHash(int deleteNum);
+    bool deleteHash(int deleteNum, string &deleteName);
     bool searchHash(int searchNum);
     void hashStatistics();
     bool addHash(int addNum, restaurantInfo *addRestaruant);
     void printHashTableSequence() const;
-
+    void printInKeySequence() const;
 };
 
 #endif

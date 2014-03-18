@@ -2,12 +2,11 @@
 //  BinarySearchTree.cpp
 //  Project 3.9
 //
-//  Created by Christina Dee Sok on 3/16/14.
-//  Copyright (c) 2014 Christina Sok. All rights reserved.
+//  Created by Yenni Chu on 3/11/14.
+//  Copyright (c) 2014 Yenni Chu. All rights reserved.
 //
 
 #include "BinarySearchTree.h"
-
 
 BinarySearchTree::BinarySearchTree():RootPtr(nullptr){}
 
@@ -97,101 +96,81 @@ void BinarySearchTree::printIndentedList(BinaryNode* root, int i)const
         }
     }
 }
-/*
- BinaryNode* BinarySearchTree::SearchName(BinaryNode* root, string name)const
- {
- if(!root)
- {
- return nullptr;
- 
- }
- else
- {
- if(name < (root->getrestaurantInfo()->getName()))
- {
- return SearchName(root->getLeftChildPtr(), name);
- }
- else
- {
- 
- if(name > (root->getrestaurantInfo()->getName()))
- {
- return SearchName(root->getRightChildPtr(), name);
- }
- else
- {
- return root;
- 
- }
- }
- 
- }
- 
- }
- 
- bool BinarySearchTree::SearchNameManager(string searchName)
- {
- BinaryNode* tempNode = SearchName(RootPtr, searchName);
- 
- if(tempNode==nullptr)
- {
- cout << searchName << " is not found"<<endl;
- return false;
- }
- 
- while(tempNode!= nullptr)
- {
- tempNode = SearchName(tempNode->getRightChildPtr(), searchName);
- }
- return true;
- }*/
-/*BinaryNode* BinarySearchTree::getParent(BinaryNode* root, string name, BinaryNode* parent)const
- {
- if(!root)
- {
- return nullptr;
- }
- else  //@@@@@ when node ==1
- {
- if(name < root->getrestaurantInfo()->getName())
- {
- parent=root;
- return  getParent( root->getLeftChildPtr(), name, parent);
- 
- }
- else
- {
- 
- if(name > root->getrestaurantInfo()->getName())
- {  parent=root;
- return getParent( root->getRightChildPtr(), name, parent);
- }
- else
- {
- return parent;
- }
- 
- }
- }
- }*/
-void BinarySearchTree::RemoveAllRestaurantWithMatchingName(string deName, Hash* aHashTable)
+
+BinaryNode* BinarySearchTree::SearchName(BinaryNode* root, string name)const
 {
-    bool find = remove(deName,aHashTable);
-    
-    while(find)
+    if(!root)
     {
-        find = remove(deName,aHashTable);
+        return nullptr;
         
     }
+    else
+    {
+        if(name < (root->getrestaurantInfo()->getName()))
+        {
+            return SearchName(root->getLeftChildPtr(), name);
+        }
+        else
+        {
+            
+            if(name > (root->getrestaurantInfo()->getName()))
+            {
+                return SearchName(root->getRightChildPtr(), name);
+            }
+            else
+            {
+                return root;
+                
+            }
+        }
+        
+    }
+    
 }
+
+
+
+/*
+bool BinarySearchTree::RemoveByAdressNumber(int addressNum, string deName)
+{
+    BinaryNode* tempNode = SearchName(RootPtr , deName);
+    
+    if(tempNode==nullptr)
+    {
+        cout << deName << " is not found"<<endl;
+        return false;
+    }
+    
+    while(tempNode!= nullptr)
+    {
+        cout << tempNode->getrestaurantInfo()->getName()<< " " ;
+        cout << tempNode->getrestaurantInfo()->getNumber()<<endl;
+        tempNode = SearchName(tempNode->getRightChildPtr(), deName);
+        
+    }
+    
+}
+*/
+
+
+/*****************
+ Three clases:
+ 1) leaves
+ 2) has only one child
+ 3) has two children
+*******************/
 bool BinarySearchTree::remove(string deName, Hash* aHashTable)
 {
-    
-    bool DeleteSuccessful = false;
-    RootPtr = removeRestaurant(deName, RootPtr , DeleteSuccessful, aHashTable);
+      
+    bool DeleteSuccessful = true;
+    while (DeleteSuccessful)
+    {
+        RootPtr = removeRestaurant(deName, RootPtr , DeleteSuccessful, aHashTable);
+        
+    }
     return DeleteSuccessful;
-    // end remove
 }
+
 BinaryNode* BinarySearchTree::removeRestaurant(string DeName, BinaryNode* subTreePtr, bool & success,  Hash *aHashTable)
 {
     if (subTreePtr == nullptr)
@@ -222,27 +201,31 @@ BinaryNode* BinarySearchTree::removeRestaurant(string DeName, BinaryNode* subTre
     
     
 }
-
-
-
 BinaryNode* BinarySearchTree:: removeNode(BinaryNode* root, Hash *aHashTable)
 {
+    
     int DeAddressNum;
+    string tempName="ee";
     
     if (root->isLeaf())
     {
         DeAddressNum= root->getrestaurantInfo()->getNumber();
+        // set pointer to restaurant Info to nullptr
+      
         root->SetRestaurantInfo(nullptr);
+    //    tempName = root->getrestaurantInfo()->getName();
         delete root;
         root = nullptr;
-        aHashTable->deleteHash(DeAddressNum);
+        // delete from hash
+        aHashTable->deleteHash(DeAddressNum, tempName);
         
-        return  nullptr; // Assign and return (student maybe should have separate statements)
+        return  nullptr; 
     }
     else if (root->getLeftChildPtr() == nullptr)  // Has rightChild only
     {
         BinaryNode* nodeToConnectPtr = root->getRightChildPtr();
         DeAddressNum= root->getrestaurantInfo()->getNumber();
+        // set pointer to restaurant Info to nullptr
         root->SetRestaurantInfo(nullptr);
         delete root;
         root = nullptr;
@@ -252,7 +235,9 @@ BinaryNode* BinarySearchTree:: removeNode(BinaryNode* root, Hash *aHashTable)
     {
         BinaryNode* nodeToConnectPtr = root->getLeftChildPtr();
         DeAddressNum= root->getrestaurantInfo()->getNumber();
+        // set pointer to restaurant Info to nullptr
         root->SetRestaurantInfo(nullptr);
+        
         delete root;
         root = nullptr;
         return nodeToConnectPtr;
@@ -284,8 +269,6 @@ BinaryNode* BinarySearchTree::removeLeftmostNode(BinaryNode* root, restaurantInf
         return root;
     }  // end if
 }
-
-
 
 
 

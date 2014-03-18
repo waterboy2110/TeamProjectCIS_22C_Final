@@ -2,13 +2,12 @@
 //  BinarySearchTree.h
 //  Project 3.9
 //
-//  Created by Christina Dee Sok on 3/16/14.
-//  Copyright (c) 2014 Christina Sok. All rights reserved.
+//  Created by Yenni Chu on 3/11/14.
+//  Copyright (c) 2014 Yenni Chu. All rights reserved.
 //
 
-#ifndef Project_3_9_BinarySearchTree_h
-#define Project_3_9_BinarySearchTree_h
-
+#ifndef __Project_3_9__BinarySearchTree__
+#define __Project_3_9__BinarySearchTree__
 
 #include <iostream>
 #include <string>
@@ -21,6 +20,7 @@ class BinarySearchTree
 {
     //friend class Hash;
 private:
+    
     BinaryNode* RootPtr;
 public:
     BinarySearchTree();
@@ -28,10 +28,10 @@ public:
     bool addNode(restaurantInfo* RestaurantInfoPtr);
     void printIndentedList(BinaryNode* root, int i)const;
     
-    //BinaryNode* SearchName(BinaryNode* root, string name)const;
-    //bool SearchNameManager(string searchName)
-    //BinaryNode* getParent(BinaryNode* root, string name,BinaryNode* parent)const;
-    void RemoveAllRestaurantWithMatchingName(string deName, Hash* aHashTable);
+    BinaryNode* SearchName(BinaryNode* root, string name)const;
+       
+    //bool RemoveByAdressNumber(int addressNum, string deName);
+   // delete functions
     bool remove(string deName, Hash* aHashTable);
     BinaryNode* removeRestaurant(string DeName, BinaryNode* subTreePtr, bool & success, Hash* aHashTable);
     BinaryNode* removeNode(BinaryNode* root, Hash* aHashTable);
