@@ -33,13 +33,7 @@ Hash::Hash(int aSize)
 //***********************************************************************************************************
 // Deconstructor
 //***********************************************************************************************************
-//
-//
-//
-//
-//
-//
-
+Hash::~Hash(){}
 
 //***********************************************************************************************************
 // Definition of hashFunction
@@ -359,6 +353,61 @@ void Hash::printHashTableSequence() const
     
     cout << "\n===================================================================\n";
 }
+
+
+//**************************************************
+// Definition of function saveToFile.
+// Writes to file from the hash table.
+//**************************************************
+bool Hash::saveToFile()
+{
+    cout << "DEBUG in save\n";
+    ofstream outFile;
+    string fileName ="RestaurantsOutfile.txt";
+    bool success = true;
+    //restaurantInfo *ptrRestaurant;
+    
+    // Open file to write, if couldn't open, display error
+    // and exit with false
+    outFile.open(fileName);
+    if (!outFile)
+    {
+        cout << "Error opening " << fileName << "!\n";
+        return false;
+    }
+    
+    for (int i = 0; i < hashSize; i++)
+    {
+        if (hashAryPtr[i].numRestaurants > 0)
+        {
+            outFile << hashAryPtr[i].aRestaurant->getName();
+            outFile << hashAryPtr[i].aRestaurant->getNumber();
+            outFile << hashAryPtr[i].aRestaurant->getStreet();
+            outFile << hashAryPtr[i].aRestaurant->getType();
+
+        }
+        
+        if (hashAryPtr[i].numRestaurants > 1)
+                //TODO Need to index into the collision array. Then we should have all the data.
+        {
+            outFile << hashAryPtr[i].aCollision->getRestaurantInfo()->getName();
+            outFile << hashAryPtr[i].aCollision->getRestaurantInfo()->getNumber();
+            outFile << hashAryPtr[i].aCollision->getRestaurantInfo()->getStreet();
+            outFile << hashAryPtr[i].aCollision->getRestaurantInfo()->getType();
+            
+            // hashAryPtr[i].aCollision->displayCollisionList(hashAryPtr[i].aCollision);
+
+        }
+    }
+
+    outFile.close();
+
+    if (!success)
+        return false;
+
+    return true;
+}
+
 
 //***********************************************************************************************************
 // Definition of printInKeySequence

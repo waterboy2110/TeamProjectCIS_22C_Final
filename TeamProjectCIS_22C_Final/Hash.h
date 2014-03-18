@@ -5,6 +5,7 @@
 #ifndef Project_3_9_Hash_h
 #define Project_3_9_Hash_h
 
+#include <fstream>
 #include <string>
 #include <iostream>
 #include <iomanip>
@@ -33,7 +34,7 @@ public:
     Hash(int aSize);
     
     // Deconstructor
-    //~Hash();
+    ~Hash();
     
     // Hash operations
     int hashFunction(int tNum);
@@ -44,6 +45,8 @@ public:
     bool addHash(int addNum, restaurantInfo *addRestaruant);
     void printHashTableSequence() const;
     void printInKeySequence() const;
+    int getTotalRestaurants(){return totalRestaurants;}
+    bool saveToFile();
 };
 
 #endif

@@ -120,6 +120,9 @@ restaurantInfo* collisionTable::getRestaurantInfo()
     return cRestaurant;
 }
 
+
+
+
 //***********************************************************************************************************
 // Definition of displayCollisionList
 //

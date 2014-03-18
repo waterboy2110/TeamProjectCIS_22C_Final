@@ -34,15 +34,18 @@ void operationManager(listHead *aList, char tUserInput);
 int checkValidStreetNum(string num);
 void PrintIndentedTreeManager(listHead *aList);
 bool searchBSTManager(listHead *aList);
+//bool saveToFile(listHead *);
 
 
 int main()
 {
     char input;
+    Hash *hashPtr = nullptr;
     
     cout << "========= R E S T A U R A N T S   I N   C U P E R T I N O =========";
     
     listHead *restaurants = new listHead(hashSize);
+    hashPtr = restaurants->getHashPtr();
 
     readFile(restaurants);
     
@@ -61,6 +64,7 @@ int main()
         // Get user's input
         input = getUserInput();
     }
+    hashPtr->saveToFile();
     
     cout << "\n======================== T H A N K  Y O U =========================";
 }
@@ -119,6 +123,56 @@ bool readFile(listHead *aList)
     
     return true;
 }// End readFile
+
+/*
+//**************************************************
+// Definition of function saveToFile.
+// Uses pointer to BST and saves to file in BFT.
+// sequence
+//**************************************************
+bool saveToFile(listHead *restaurants)
+{
+    cout << "DEBUG in save\n";
+    ofstream outFile;
+    string fileName ="RestaurantsOutfile.txt";
+    bool success = true;
+    restaurantInfo *ptrRestaurant;
+    
+    // Open file to write, if couldn't open, display error
+    // and exit with false
+    outFile.open(fileName);
+    if (!outFile)
+    {
+        cout << "Error opening " << fileName << "!\n";
+        return false;
+    }
+    
+    Hash *hashAryPtr = restaurants->getHashPtr();
+    
+    restaurants->getHashPtr()->printHashTableSequence();
+    
+    for (int i = 0; i < hashSize; i++)
+    {
+        if (hashAryPtr[i].getTotalRestaurants() > 0)
+        {
+            //outFile << hashAryPtr[i].aRestaurant->getName();
+            hashAryPtr[i].aRestaurant->displayRestaurant();
+        }
+        
+        if (hashAryPtr[i].getTotalRestaurants() > 1)
+        {
+            outFile << &hashAryPtr[i];
+            //hashAryPtr[i].aCollision->displayCollisionList(hashAryPtr[i].aCollision);
+        }
+    }
+    outFile.close();
+    
+    if (!success)
+        return false;
+    
+    return true;
+}
+*/
 
 //***********************************************************************************************************
 // Definition insertManager
@@ -285,7 +339,7 @@ void displayMenu()
     //cout << "\n=  H - List data in hash table sequence                           =";
     cout << "\n=  T - Print indented tree                                        =";
     //cout << "\n=  S - Print hash statistics                                      =";
-    //insert save to ouput
+    cout << "\n=  A - sAve to ouput                                               =";
     cout << "\n=  M - Display menu                                               =";         
     cout << "\n=  Q - Quit                                                       =";
     cout << "\n===================================================================\n";
@@ -327,7 +381,7 @@ void validateUserInput(char &tUserInput)
     // While the input is not valid....
     while (tUserInput != 'i' & tUserInput != 'd' & tUserInput != 'p' & tUserInput != 'n'
            & tUserInput != 'k' & tUserInput != 'h' & tUserInput != 't' & tUserInput != 's'
-           & tUserInput != 'q' & tUserInput != 'm')
+           & tUserInput != 'q' & tUserInput != 'm' & tUserInput != 'a')
     {
         cout << "\nYou have entered an invalid letter.";
         cout << "\nPlease enter a letter: ";
@@ -395,8 +449,19 @@ void operationManager(listHead *aList, char tUserInput)
                                 }
                                 else
                                 {
-                                    // Otherwise, display menu
-                                    displayMenu();
+                                    if (tUserInput == 'a')
+                                    {
+                                        // Save the file
+                                        Hash *hashPtr = aList->getHashPtr();
+                                        hashPtr->saveToFile();
+                                    }
+                                    
+                                    else
+                                    {
+                                        // Otherwise, display menu
+                                        displayMenu();
+                                
+                                    }
                                 }
                             }
                         }
@@ -442,10 +507,6 @@ void PrintIndentedTreeManager(listHead* aList)
 }
 
 
-
-
-
-
 bool searchBSTManager(listHead *aList)
 {
     string SearchName;
@@ -467,7 +528,4 @@ bool searchBSTManager(listHead *aList)
         
     }
     return true;
-    
-    
-    
 }
