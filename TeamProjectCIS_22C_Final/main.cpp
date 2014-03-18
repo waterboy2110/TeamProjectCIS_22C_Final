@@ -32,6 +32,7 @@ char getUserInput();
 void validateUserInput(char &tUserInput);
 void operationManager(listHead *aList, char tUserInput);
 int checkValidStreetNum(string num);
+bool saveToFile(listHead *);
 
 int main()
 {
@@ -62,6 +63,7 @@ int main()
         input = getUserInput();
     }
 
+    saveToFile(restaurants);
     
     cout << "\n======================== T H A N K  Y O U =========================";
 }
@@ -434,4 +436,49 @@ int checkValidStreetNum(string num)
     }// End if
 
     return atoi(num.c_str());
+}
+
+//**************************************************
+// Definition of function saveToFile.
+// This function will read all the data from
+// the file.
+// Really should have put this in the cpp file
+// but since ListNode is private I didn't have
+// access. Well - I think.
+//**************************************************
+bool saveToFile(listHead *restaurants)
+{
+    cout << "DEBUG in save\n";
+    ofstream outFile;
+    string fileName ="Restaurants2.txt";
+    bool success = true;
+    
+    // Open file to write, if couldn't open, display error
+    // and exit with false
+    outFile.open(fileName);
+    if (!outFile)
+    {
+        cout << "Error opening " << fileName << "!\n";
+        return false;
+    }
+    
+    restaurants->getHashPtr()->printHashTableSequence();
+    
+    
+/*
+    ListNode<T> *nodePtr;  // To move through the list.
+	nodePtr = sentinel;		// Position nodePtr to the sentinel.
+    
+    while (nodePtr)
+    {
+        outFile << nodePtr->value << endl;	// Write to the file.
+        nodePtr = nodePtr->next;				// Move to the next node.
+    }
+  */  
+    outFile.close();
+    
+    if (!success)
+        return false;
+    
+    return true;
 }
