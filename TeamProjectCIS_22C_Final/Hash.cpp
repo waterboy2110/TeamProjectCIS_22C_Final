@@ -61,7 +61,10 @@ int Hash::hashFunction(int tNum)
     
     // Return the quotient of the sum of each integer and the number of integers
     // in the string.
-    return sum/str.length();
+    
+    //cout << "DEBUG IN HASH " << sum << " " << str.length() << endl;
+    
+    return sum / str.length();
     
 }// End hashFunction
 
@@ -76,7 +79,7 @@ bool Hash::insertHash(restaurantInfo *tRestaurant)
     // If there are no restaurants....
     if (hashAryPtr[hashNum].numRestaurants == 0)
     {
-        //cout << "Name: " << tRestaurant->getName() << endl;
+        //cout << "DEBUG InsertHash Name: " << tRestaurant->getName() << endl;
 
         // Store the resraurant in aRestaurant
         hashAryPtr[hashNum].aRestaurant = tRestaurant;
@@ -86,7 +89,7 @@ bool Hash::insertHash(restaurantInfo *tRestaurant)
     }
     else    // Otherwise, there is a collision...
     {
-        //cout << "Name: " << tRestaurant->getName() << endl;
+        //cout << "DEBUG elseName: " << tRestaurant->getName() << endl;
         
         // Insert the restaurant in the collision table
         hashAryPtr[hashNum].aCollision->insertCollision(tRestaurant, hashAryPtr[hashNum].numRestaurants,
@@ -265,7 +268,6 @@ void Hash::hashStatistics()
                 countLL++;
             }
         }
-        
     }
     
     // Switch to double
@@ -378,6 +380,7 @@ bool Hash::saveToFile()
     
     for (int i = 0; i < hashSize; i++)
     {
+        cout << "DEBUG in saveToFile: " << hashSize << " i: " << i << endl;
         if (hashAryPtr[i].numRestaurants > 0)
         {
             outFile << hashAryPtr[i].aRestaurant->getName();
@@ -394,9 +397,6 @@ bool Hash::saveToFile()
             outFile << hashAryPtr[i].aCollision->getRestaurantInfo()->getNumber();
             outFile << hashAryPtr[i].aCollision->getRestaurantInfo()->getStreet();
             outFile << hashAryPtr[i].aCollision->getRestaurantInfo()->getType();
-            
-            // hashAryPtr[i].aCollision->displayCollisionList(hashAryPtr[i].aCollision);
-
         }
     }
 

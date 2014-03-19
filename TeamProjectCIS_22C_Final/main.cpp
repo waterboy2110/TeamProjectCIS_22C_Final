@@ -34,8 +34,6 @@ void operationManager(listHead *aList, char tUserInput);
 int checkValidStreetNum(string num);
 void PrintIndentedTreeManager(listHead *aList);
 bool searchBSTManager(listHead *aList);
-//bool saveToFile(listHead *);
-
 
 int main()
 {
@@ -64,7 +62,8 @@ int main()
         // Get user's input
         input = getUserInput();
     }
-    hashPtr->saveToFile();
+    
+    hashPtr->saveToFile();          // Save to file on exit
     
     cout << "\n======================== T H A N K  Y O U =========================";
 }
@@ -124,55 +123,6 @@ bool readFile(listHead *aList)
     return true;
 }// End readFile
 
-/*
-//**************************************************
-// Definition of function saveToFile.
-// Uses pointer to BST and saves to file in BFT.
-// sequence
-//**************************************************
-bool saveToFile(listHead *restaurants)
-{
-    cout << "DEBUG in save\n";
-    ofstream outFile;
-    string fileName ="RestaurantsOutfile.txt";
-    bool success = true;
-    restaurantInfo *ptrRestaurant;
-    
-    // Open file to write, if couldn't open, display error
-    // and exit with false
-    outFile.open(fileName);
-    if (!outFile)
-    {
-        cout << "Error opening " << fileName << "!\n";
-        return false;
-    }
-    
-    Hash *hashAryPtr = restaurants->getHashPtr();
-    
-    restaurants->getHashPtr()->printHashTableSequence();
-    
-    for (int i = 0; i < hashSize; i++)
-    {
-        if (hashAryPtr[i].getTotalRestaurants() > 0)
-        {
-            //outFile << hashAryPtr[i].aRestaurant->getName();
-            hashAryPtr[i].aRestaurant->displayRestaurant();
-        }
-        
-        if (hashAryPtr[i].getTotalRestaurants() > 1)
-        {
-            outFile << &hashAryPtr[i];
-            //hashAryPtr[i].aCollision->displayCollisionList(hashAryPtr[i].aCollision);
-        }
-    }
-    outFile.close();
-    
-    if (!success)
-        return false;
-    
-    return true;
-}
-*/
 
 //***********************************************************************************************************
 // Definition insertManager
@@ -338,7 +288,7 @@ void displayMenu()
     //cout << "\n=  K - List data in street number sequence                        =";
     //cout << "\n=  H - List data in hash table sequence                           =";
     cout << "\n=  T - Print indented tree                                        =";
-    //cout << "\n=  S - Print hash statistics                                      =";
+    cout << "\n=  S - Print hash statistics                                      =";
     cout << "\n=  A - sAve to ouput                                               =";
     cout << "\n=  M - Display menu                                               =";         
     cout << "\n=  Q - Quit                                                       =";
@@ -507,6 +457,13 @@ void PrintIndentedTreeManager(listHead* aList)
 }
 
 
+//***********************************************************************************************************
+// Definition of searchBSTManager
+// Pre - Asks user for a name to search for
+// Calls searchName from the BST and begins search at the root
+// Post - returns false if not found, displays restaurant data
+// and returns true if found.
+//***********************************************************************************************************
 bool searchBSTManager(listHead *aList)
 {
     string SearchName;
