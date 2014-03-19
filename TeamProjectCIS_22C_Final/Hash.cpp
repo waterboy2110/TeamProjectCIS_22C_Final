@@ -1,4 +1,12 @@
 //***********************************************************************************************************
+// Team Project - Restaurants in Cupertino (Group 3)                         3/9/14          Mac OS X - xCode
+//
+// Christina Sok, Yenni Chu, James Agua
+//
+//
+//***********************************************************************************************************
+
+//***********************************************************************************************************
 // Implementation file for hash class
 //***********************************************************************************************************
 
@@ -6,7 +14,7 @@
 // THINGS TO CHANGE:
 //
 // X Constructor so that the size is received from the ListHead
-// - Add a deconstructor
+// - Add a deconstructor - may need to loop through the table and delete.
 // X Display restaurants as they are added?
 // X Update number of restaurants in list head when adding restaurants and deleting restaurants
 //          (Done in main)
@@ -14,6 +22,9 @@
 //          header file)
 // X Change hash stat to the size of array from listhead (let it receive)
 // X Add function: add only if the number does not already exist (unique key)
+// X saveToFile to save Hash table to file
+// - saving collision tables
+// - remove cout debug statements
 //***********************************************************************************************************
 
 #include "Hash.h"
@@ -398,6 +409,12 @@ bool Hash::saveToFile()
             outFile << hashAryPtr[i].aCollision->getRestaurantInfo()->getStreet();
             outFile << hashAryPtr[i].aCollision->getRestaurantInfo()->getType();
             }
+            
+            /*
+             // Insert the restaurant in the collision table
+             hashAryPtr[hashNum].aCollision->insertCollision(tRestaurant, hashAryPtr[hashNum].numRestaurants,
+             hashAryPtr[hashNum].aCollision);
+             */
         }
     }
 

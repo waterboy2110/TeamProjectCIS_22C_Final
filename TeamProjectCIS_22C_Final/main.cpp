@@ -9,9 +9,15 @@
 //***********************************************************************************************************
 // THINGS TO ADD:
 //
-// - Check for cost type (valid)
+// - Check for cost type (valid) - cost type removed from program - can delete all references to it
 // - Edit delete
 // - code searchBST manager
+// Search by name not working
+// Insert works and search prints it (P) when searched by street number.
+// listing hash table doesn't find the added search if it is in the collision table (I think it
+// fails for the same reason that saveToFile is failing.
+// List data in street number sequence - may not need this if it wasn't asked for.
+//
 //***********************************************************************************************************
 
 #include <iostream>
@@ -283,13 +289,13 @@ void displayMenu()
     cout << "\n============================= M E N U =============================";
     cout << "\n=  I - (I)nsert new data                                            =";
     cout << "\n=  D - (D)elete data                                                =";
-    cout << "\n=  P - Search using street number                                 =";
+    cout << "\n=  P - Search using street number                                   =";
     cout << "\n=  N - Search using restaurant (N)ame                               =";
-    cout << "\n=  K - List data in street number sequence                        =";
+    cout << "\n=  K - List data in street number sequence                          =";
     cout << "\n=  H - List data in (H)ash table sequence                           =";
     cout << "\n=  T - Print indented (T)ree                                        =";
     cout << "\n=  S - Print hash (S)tatistics                                      =";
-    cout << "\n=  A - S(A)ve to ouput                                               =";
+    cout << "\n=  A - S(A)ve to ouput                                              =";
     cout << "\n=  M - Display (M)enu                                               =";
     cout << "\n=  Q - (Q)uit                                                       =";
     cout << "\n===================================================================\n";
@@ -375,7 +381,7 @@ void operationManager(listHead *aList, char tUserInput)
                 {
                     if (tUserInput == 'k')
                     {
-                        // Insert list data in street number sequence
+                        cout << "Not Implemented\n";
                     }
                     else
                     {

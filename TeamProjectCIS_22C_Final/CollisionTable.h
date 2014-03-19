@@ -1,4 +1,12 @@
 //***********************************************************************************************************
+// Team Project - Restaurants in Cupertino (Group 3)                         3/9/14          Mac OS X - xCode
+//
+// Christina Sok, Yenni Chu, James Agua
+//
+//
+//***********************************************************************************************************
+
+//***********************************************************************************************************
 // Specification file for collisionTable class
 //***********************************************************************************************************
 
@@ -19,12 +27,12 @@ class collisionTable
 {
 private:
     restaurantInfo *cRestaurant;    // Pointer to restaurant info
-    collisionTable *nextC;          // Pointer to next restaurant info    
+    collisionTable *nextC;          // Pointer to next restaurant info
     
 public:
     // Constructors
     collisionTable();
-    collisionTable(restaurantInfo *collisionPtr);
+    collisionTable(restaurantInfo *collisionPtr, collisionTable *nextC = NULL);
     
     // Collision table operations
     bool insertCollision(restaurantInfo *collisionPtr, int hashNum, collisionTable *&ptr);
