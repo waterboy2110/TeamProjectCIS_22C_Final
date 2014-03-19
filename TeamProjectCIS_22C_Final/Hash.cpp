@@ -61,9 +61,6 @@ int Hash::hashFunction(int tNum)
     
     // Return the quotient of the sum of each integer and the number of integers
     // in the string.
-    
-    //cout << "DEBUG IN HASH " << sum << " " << str.length() << endl;
-    
     return sum / str.length();
     
 }// End hashFunction
@@ -227,7 +224,11 @@ bool Hash::searchHash(int searchNum)
 
 //***********************************************************************************************************
 // Definition of hashStatistics
-//
+// Determines the number of collision nodes for each table node
+// and accumilates that data. Finds the longest list (LL)
+// PRE - NONE
+// Post - Determines the load factor (number of collisions / total objects)
+// and displays the data.
 //***********************************************************************************************************
 void Hash::hashStatistics()
 {
@@ -363,14 +364,11 @@ void Hash::printHashTableSequence() const
 //**************************************************
 bool Hash::saveToFile()
 {
-    cout << "DEBUG in save\n";
     ofstream outFile;
     string fileName ="RestaurantsOutfile.txt";
     bool success = true;
-    //restaurantInfo *ptrRestaurant;
     
-    // Open file to write, if couldn't open, display error
-    // and exit with false
+    // Open file to write, if unable, display error and exit with false
     outFile.open(fileName);
     if (!outFile)
     {
@@ -380,7 +378,6 @@ bool Hash::saveToFile()
     
     for (int i = 0; i < hashSize; i++)
     {
-        cout << "DEBUG in saveToFile: " << hashSize << " i: " << i << endl;
         if (hashAryPtr[i].numRestaurants > 0)
         {
             outFile << hashAryPtr[i].aRestaurant->getName();
@@ -391,8 +388,9 @@ bool Hash::saveToFile()
         }
         
         if (hashAryPtr[i].numRestaurants > 1)
-                //TODO Need to index into the collision array. Then we should have all the data.
         {
+            cout << "DEBUG in saveToFile: " << hashAryPtr[i].numRestaurants << endl;
+            while(hashAryPtr[i].aCollision.)
             outFile << hashAryPtr[i].aCollision->getRestaurantInfo()->getName();
             outFile << hashAryPtr[i].aCollision->getRestaurantInfo()->getNumber();
             outFile << hashAryPtr[i].aCollision->getRestaurantInfo()->getStreet();

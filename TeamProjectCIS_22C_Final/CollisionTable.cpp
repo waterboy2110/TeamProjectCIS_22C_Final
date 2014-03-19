@@ -113,15 +113,14 @@ restaurantInfo* collisionTable::getLastCollision(collisionTable *ptr)
 
 
 //***********************************************************************************************************
-//
+// Definition of getRestaurantInfo
+// Pre - none
+// Post - Returns restaurant in collision table
 //***********************************************************************************************************
 restaurantInfo* collisionTable::getRestaurantInfo()
 {
     return cRestaurant;
 }
-
-
-
 
 //***********************************************************************************************************
 // Definition of displayCollisionList
@@ -146,6 +145,7 @@ bool collisionTable::searchCollisionList(collisionTable *ptr, int searchNum)
 }
 
 //***********************************************************************************************************
+// Definition oa searchForAdd
 //
 //***********************************************************************************************************
 bool collisionTable::searchForAdd(collisionTable *ptr, int addNum)
