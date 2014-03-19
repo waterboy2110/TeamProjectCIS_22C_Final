@@ -401,8 +401,10 @@ bool Hash::saveToFile()
         if (hashAryPtr[i].numRestaurants > 1)
         {
             cout << "DEBUG in saveToFile: " << hashAryPtr[i].numRestaurants << endl;
-            //cout << hashAryPtr[i].aCollision->getNextCollision()->getRestaurantInfo() << endl;
-           // while(hashAryPtr[i].aCollision->getNextCollision() != NULL)
+            //while(hashAryPtr[i].aCollision->getNextCollision() != NULL)
+                cout << hashAryPtr[i].aCollision->getNextCollision()->getRestaurantInfo() << endl;
+           
+            // while(hashAryPtr[i].aCollision->getNextCollision() != NULL)
             {
             outFile << hashAryPtr[i].aCollision->getRestaurantInfo()->getName();
             outFile << to_string(hashAryPtr[i].aCollision->getRestaurantInfo()->getNumber()) << endl;
