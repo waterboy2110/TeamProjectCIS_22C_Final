@@ -31,7 +31,7 @@ public:
     bool deleteCollision(int tStreetNum, collisionTable *ptr);
     restaurantInfo* getLastCollision(collisionTable *ptr);
     restaurantInfo* getRestaurantInfo();
-   // restaurantInfo* getRestaurantInfo(collisionTable *);
+    collisionTable* getNextCollision();
     bool searchCollisionList(collisionTable *ptr, int searchNum);
     bool searchForAdd(collisionTable *ptr, int addNum);
     void displayCollisionList(collisionTable *ptr);

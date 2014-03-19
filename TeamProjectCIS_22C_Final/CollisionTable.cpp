@@ -123,6 +123,17 @@ restaurantInfo* collisionTable::getRestaurantInfo()
 }
 
 //***********************************************************************************************************
+// Definition of getNextCollision
+// Access method to return pointer to next member in the collision table
+// Pre - none
+// Post - nextC pointer
+//***********************************************************************************************************
+collisionTable* collisionTable::getNextCollision()
+{
+    return nextC;
+}
+
+//***********************************************************************************************************
 // Definition of displayCollisionList
 //
 //***********************************************************************************************************
@@ -145,8 +156,10 @@ bool collisionTable::searchCollisionList(collisionTable *ptr, int searchNum)
 }
 
 //***********************************************************************************************************
-// Definition oa searchForAdd
-//
+// Definition of searchForAdd (address)
+// Moves through the collision table and tests for a duplicate address
+// Pre - pointer to the collision table, the int of the address
+// Post - true once duplicate is not found.
 //***********************************************************************************************************
 bool collisionTable::searchForAdd(collisionTable *ptr, int addNum)
 {

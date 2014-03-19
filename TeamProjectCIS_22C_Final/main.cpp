@@ -65,7 +65,7 @@ int main()
     
     hashPtr->saveToFile();          // Save to file on exit
     
-    cout << "\n======================== T H A N K  Y O U =========================";
+    cout << "\n======================== T H A N K  Y O U =========================\n";
 }
 
 //***********************************************************************************************************
@@ -281,17 +281,17 @@ void displayMenu()
 {
     cout << endl;
     cout << "\n============================= M E N U =============================";
-    cout << "\n=  I - Insert new data                                            =";
-    cout << "\n=  D - Delete data                                                =";
+    cout << "\n=  I - (I)nsert new data                                            =";
+    cout << "\n=  D - (D)elete data                                                =";
     cout << "\n=  P - Search using street number                                 =";
-    cout << "\n=  N - Search using restaurant name                               =";
+    cout << "\n=  N - Search using restaurant (N)ame                               =";
     cout << "\n=  K - List data in street number sequence                        =";
-    cout << "\n=  H - List data in hash table sequence                           =";
-    cout << "\n=  T - Print indented tree                                        =";
-    cout << "\n=  S - Print hash statistics                                      =";
-    cout << "\n=  A - sAve to ouput                                               =";
-    cout << "\n=  M - Display menu                                               =";         
-    cout << "\n=  Q - Quit                                                       =";
+    cout << "\n=  H - List data in (H)ash table sequence                           =";
+    cout << "\n=  T - Print indented (T)ree                                        =";
+    cout << "\n=  S - Print hash (S)tatistics                                      =";
+    cout << "\n=  A - S(A)ve to ouput                                               =";
+    cout << "\n=  M - Display (M)enu                                               =";
+    cout << "\n=  Q - (Q)uit                                                       =";
     cout << "\n===================================================================\n";
 
 }// End displayMenu
