@@ -54,11 +54,6 @@ public:
     void printHashTableSequence() const;
     void printInKeySequence() const;
     int getTotalRestaurants(){return totalRestaurants;}
-    hashTable* getHashAryPtr();
-    restaurantInfo* getRestaurant();
-    collisionTable* getCollision(int collisionIndex);
-    int getNumberRestaurantsInCollisionTable(int arrayIndex);
-    bool saveToFile();
 };
 
 #endif

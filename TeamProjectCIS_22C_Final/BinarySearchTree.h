@@ -36,5 +36,6 @@ public:
     BinaryNode* removeRestaurant(string DeName, BinaryNode* subTreePtr, bool & success, Hash* aHashTable);
     BinaryNode* removeNode(BinaryNode* root, Hash* aHashTable);
     BinaryNode* removeLeftmostNode(BinaryNode* root, restaurantInfo*&Arestaurant, Hash* aHashTable );
+    bool saveToFile(BinaryNode* rootPtr);
 };
 #endif

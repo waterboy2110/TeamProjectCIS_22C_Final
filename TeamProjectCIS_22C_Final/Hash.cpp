@@ -22,8 +22,6 @@
 //          header file)
 // X Change hash stat to the size of array from listhead (let it receive)
 // X Add function: add only if the number does not already exist (unique key)
-// X saveToFile to save Hash table to file
-// - saving collision tables
 // - remove cout debug statements
 //***********************************************************************************************************
 
@@ -76,41 +74,6 @@ int Hash::hashFunction(int tNum)
     
 }// End hashFunction
 
-//***********************************************************************************************************
-// Definition of getHashAryPtr
-// Returns pointer to private member hashAryPtr
-//***********************************************************************************************************
-hashTable* Hash::getHashAryPtr()
-{
-    return hashAryPtr;
-}
-
-//***********************************************************************************************************
-// Definition of getRestaurant
-// Returns pointer to aRestaurant in hashTable struct
-//***********************************************************************************************************
-restaurantInfo* Hash::getRestaurant()
-{
-    return hashAryPtr->aRestaurant;
-}
-
-//***********************************************************************************************************
-// Definition of getRestaurant
-// Returns pointer to aRestaurant in hashTable struct
-//***********************************************************************************************************
-collisionTable* Hash::getCollision(int hashIndex)
-{
-    return hashAryPtr[hashIndex].aCollision;
-}
-
-//***********************************************************************************************************
-// Definition of getNumberOfRestaurantsInCollisionTable
-// Returns number of nodes in the collision table. - should I even be doing this? 
-//***********************************************************************************************************
-int Hash::getNumberRestaurantsInCollisionTable(int arrayIndex)
-{
-    return hashAryPtr[arrayIndex].numRestaurants;
-}
 
 //***********************************************************************************************************
 // Definition of insertHash
@@ -403,75 +366,6 @@ void Hash::printHashTableSequence() const
     
     cout << "\n===================================================================\n";
 }
-
-
-//**************************************************
-// Definition of function saveToFile.
-// Writes to file from the hash table.
-//**************************************************
-bool Hash::saveToFile()
-{
-    ofstream outFile;
-    string fileName ="RestaurantsOutfile.txt";
-    bool success = true;
-    collisionTable *collisionPtr = NULL;
-    
-    // Open file to write, if unable, display error and exit with false
-    outFile.open(fileName);
-    if (!outFile)
-    {
-        cout << "Error opening " << fileName << "!\n";
-        return false;
-    }
-    
-    for (int i = 0; i < hashSize; i++)
-    {
-        if (hashAryPtr[i].numRestaurants > 0)
-        {
-            outFile << hashAryPtr[i].aRestaurant->getName();
-            outFile << to_string(hashAryPtr[i].aRestaurant->getNumber()) << endl;
-            outFile << hashAryPtr[i].aRestaurant->getStreet();
-            outFile << hashAryPtr[i].aRestaurant->getType();
-
-        }
-        
-        if (hashAryPtr[i].numRestaurants > 1)
-        {
-            collisionPtr = hashAryPtr[i].aCollision;
-            
-            cout << "DEBUG in saveToFile: " << hashAryPtr[i].numRestaurants << endl;
-            
-            for(int j = 0; j < hashAryPtr[i].numRestaurants -1; j++ )
-            {
-                
-                
-            //while(hashAryPtr[i].aCollision->getNextCollision() != NULL)
-            //cout << hashAryPtr[i].aCollision->getRestaurantInfo()->getName() << endl;
-            //cout << hashAryPtr[i].aCollision->getNextCollision()->getRestaurantInfo()->getName() << endl;
-
-            cout << collisionPtr->getRestaurantInfo()->getName() << endl;
-
-           
-           
-            outFile << hashAryPtr[i].aCollision->getRestaurantInfo()->getName();
-            outFile << to_string(hashAryPtr[i].aCollision->getRestaurantInfo()->getNumber()) << endl;
-            outFile << hashAryPtr[i].aCollision->getRestaurantInfo()->getStreet();
-            outFile << hashAryPtr[i].aCollision->getRestaurantInfo()->getType();
-                
-            collisionPtr = hashAryPtr[i].aCollision->getNextCollision();
-
-            }
-        }
-    }
-
-    outFile.close();
-
-    if (!success)
-        return false;
-
-    return true;
-}
-
 
 //***********************************************************************************************************
 // Definition of printInKeySequence

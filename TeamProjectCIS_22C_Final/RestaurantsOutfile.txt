@@ -1,24 +1,24 @@
-Ike's Lair21000
-Stevens Creek BlvdSandwichesCurry House10350
-S De Anza BlvdJapaneseDonut Wheel10250
-N De Anza BlvdDonutsDonut Wheel10250
-N De Anza BlvdDonutsDonut Wheel10250
-N De Anza BlvdDonutsDonut Wheel10250
-N De Anza BlvdDonutsSmokeEaters10650
-S De Anza BlvdChicken wingsYiassoo10660
-S De Anza BlvdGreekYiassoo10660
-S De Anza BlvdGreekYiassoo10660
-S De Anza BlvdGreekYiassoo10660
-S De Anza BlvdGreekYiassoo10660
-S De Anza BlvdGreekThai Square Restaurant21267
-Stevens Creek BlvdThaiFantasia Coffee & Tea10933
-N Wolfe RdCoffeeFantasia Coffee & Tea10933
-N Wolfe RdCoffeeFantasia Coffee & Tea10933
-N Wolfe RdCoffeePhilz Coffee20686
-Stevens Creek BlvdCoffeeAijito7335
-Bollinger RdJapaneseBeard Papa's19748
-Stevens Creek BlvdDessertsGochi Japanese Fusion Tapas19980
-E Homestead RdJapanese Gochi Japanese Fusion Tapas19980
-E Homestead RdJapanese Gochi Japanese Fusion Tapas19980
-E Homestead RdJapanese 212 New York Pizza19998
-Homestead RdPizza
+212 New York Pizza19998
+Homestead RdPizzaAijito7335
+Bollinger RdJapaneseAlexander's Steakhouse10330
+N Wolfe RdSteakhousesBeard Papa's19748
+Stevens Creek BlvdDessertsBitter+Sweet20560
+Town Center LnCoffeeBobbie's Cafe1361
+S De Anza BlvdBreakfastChipotle Mexican Grill10385
+S De Anza BlvdMexicanCurry House10350
+S De Anza BlvdJapaneseCurry House1111
+S De Anza BlvdJapaneseCurry House124
+S De Anza BlvdJapaneseDonut Wheel10250
+N De Anza BlvdDonutsFantasia Coffee & Tea10933
+N Wolfe RdCoffeeGochi Japanese Fusion Tapas19980
+E Homestead RdJapanese Ike's Lair21000
+Stevens Creek BlvdSandwichesLa Terra Bakery & Cafe19960
+Homestead RdBakeriesOne Pot Shabu Shabu19648
+Stevens Creek BlvdJapanesePhilz Coffee20686
+Stevens Creek BlvdCoffeeRio Adobe Southwest Cafe10525
+S De Anza BlvdMexicanSmokeEaters10650
+S De Anza BlvdChicken wingsSpring Rice & Crawfish10123
+N Wolfe RdSeafoodThai Square Restaurant21267
+Stevens Creek BlvdThaiWingstop19620
+Stevens Creek BlvdChicken wingsYiassoo10660
+S De Anza BlvdGreek

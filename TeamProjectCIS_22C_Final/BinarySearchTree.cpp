@@ -7,6 +7,8 @@
 //
 
 #include "BinarySearchTree.h"
+#include <fstream>
+#include <vector>
 
 BinarySearchTree::BinarySearchTree():RootPtr(nullptr){}
 
@@ -257,6 +259,7 @@ BinaryNode* BinarySearchTree:: removeNode(BinaryNode* root, Hash *aHashTable)
         return root;
     }
 }
+
 BinaryNode* BinarySearchTree::removeLeftmostNode(BinaryNode* root, restaurantInfo* &Arestaurant, Hash* aHashTable)
 {
     
@@ -270,6 +273,63 @@ BinaryNode* BinarySearchTree::removeLeftmostNode(BinaryNode* root, restaurantInf
         root->setLeftChildPtr(removeLeftmostNode(root->getLeftChildPtr(), Arestaurant, aHashTable));
         return root;
     }  // end if
+}
+
+//**************************************************
+// Definition of function saveToFile.
+// Writes to file from the BST.
+//**************************************************
+bool BinarySearchTree::saveToFile(BinaryNode *binaryNodePtr)               //was hash with commented out code
+{
+    ofstream outFile;
+    string fileName ="RestaurantsOutfile.txt";
+    bool success = true;
+    bool done = false;
+    vector<BinaryNode> vBST;
+    
+    
+    // Open file to write, if unable, display error and exit with false
+    outFile.open(fileName);
+    if (!outFile)
+    {
+        cout << "Error opening " << fileName << "!\n";
+        return false;
+    }
+    cout << "Saving File...\n";
+   
+    BinaryNode *current = binaryNodePtr;
+    while(!done)
+    {
+        if(current)
+        {
+            vBST.push_back(*current);
+            current = current->getLeftChildPtr();
+        }
+        else
+        {
+            if(vBST.empty())
+            {
+                done = true;
+            }
+            else
+            {
+                current = &vBST.back();
+                vBST.pop_back();
+                outFile << current->getrestaurantInfo()->getName();
+                outFile << to_string(current->getrestaurantInfo()->getNumber()) << endl;
+                outFile << current->getrestaurantInfo()->getStreet();
+                outFile << current->getrestaurantInfo()->getType();
+                current = current->getRightChildPtr();
+            }
+        }
+    }
+
+    outFile.close();
+    
+    if (!success)
+        return false;
+    
+    return true;
 }
 
 
