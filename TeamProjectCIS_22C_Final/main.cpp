@@ -40,11 +40,13 @@ void operationManager(listHead *aList, char tUserInput);
 int checkValidStreetNum(string num);
 void PrintIndentedTreeManager(listHead *aList);
 bool searchBSTManager(listHead *aList);
+bool saveToFile(Hash *hashAryPtr);
 
 int main()
 {
     char input;
     Hash *hashPtr = nullptr;
+    hashTable *hashAryPtr;
     
     cout << "========= R E S T A U R A N T S   I N   C U P E R T I N O =========";
     
@@ -69,9 +71,76 @@ int main()
         input = getUserInput();
     }
 
-    hashPtr->saveToFile();          // Save to file on exit
+   // hashPtr->saveToFile();          // Save to file on exit
+    saveToFile(hashPtr);
     
     cout << "\n======================== T H A N K  Y O U =========================\n";
+}
+
+//**************************************************
+// Definition of function saveToFile.
+// Writes to file from the hash table.
+//**************************************************
+bool saveToFile(Hash *hashAryPtr)
+{
+    ofstream outFile;
+    string fileName ="RestaurantsOutfile.txt";
+    bool success = true;
+    collisionTable *collisionPtr = NULL;
+    
+    // Open file to write, if unable, display error and exit with false
+    outFile.open(fileName);
+    if (!outFile)
+    {
+        cout << "Error opening " << fileName << "!\n";
+        return false;
+    }
+    
+    for (int i = 0; i < hashSize; i++)
+    {
+        if (hashAryPtr[i].getNumberRestaurantsInCollisionTable(i) > 0)
+        {
+            outFile << hashAryPtr[i].getRestaurant()->getName();
+            outFile << to_string(hashAryPtr[i].getRestaurant()->getNumber()) << endl;
+            outFile << hashAryPtr[i].getRestaurant()->getStreet();
+            outFile << hashAryPtr[i].getRestaurant()->getType();
+            
+        }
+        
+        if (hashAryPtr[i].getNumberRestaurantsInCollisionTable(i) > 1)
+        {
+           // collisionPtr = hashAryPtr[i].getCollision(i);
+            
+            //cout << "DEBUG in saveToFile: " << hashAryPtr[i].getTotalRestaurants() << endl;
+            
+           // for(int j = 0; j < hashAryPtr[i].getNumberRestaurantsInCollisionTable() -1; j++ )
+            {
+                
+                
+                //while(hashAryPtr[i].aCollision->getNextCollision() != NULL)
+                //cout << hashAryPtr[i].aCollision->getRestaurantInfo()->getName() << endl;
+                //cout << hashAryPtr[i].aCollision->getNextCollision()->getRestaurantInfo()->getName() << endl;
+                
+               // cout << collisionPtr->getRestaurantInfo()->getName() << endl;
+                
+                
+                
+    //          outFile << hashAryPtr[i].getCollision(i)->getRestaurantInfo()->getName();
+    //          outFile << to_string(hashAryPtr[i].aCollision->getRestaurantInfo()->getNumber()) << endl;
+    //          outFile << hashAryPtr[i].aCollision->getRestaurantInfo()->getStreet();
+    //          outFile << hashAryPtr[i].aCollision->getRestaurantInfo()->getType();
+    //          collisionPtr = hashAryPtr[i].aCollision->getNextCollision();
+                
+            }
+        }
+    }
+    
+    outFile.close();
+    
+    if (!success)
+        return false;
+    
+    return true;
 }
 
 //***********************************************************************************************************
@@ -409,7 +478,8 @@ void operationManager(listHead *aList, char tUserInput)
                                     {
                                         // Save the file
                                         Hash *hashPtr = aList->getHashPtr();
-                                        hashPtr->saveToFile();
+                                        //hashPtr->saveToFile();
+                                        saveToFile(hashPtr);
                                     }
                                     
                                     else

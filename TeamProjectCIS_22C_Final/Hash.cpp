@@ -77,6 +77,42 @@ int Hash::hashFunction(int tNum)
 }// End hashFunction
 
 //***********************************************************************************************************
+// Definition of getHashAryPtr
+// Returns pointer to private member hashAryPtr
+//***********************************************************************************************************
+hashTable* Hash::getHashAryPtr()
+{
+    return hashAryPtr;
+}
+
+//***********************************************************************************************************
+// Definition of getRestaurant
+// Returns pointer to aRestaurant in hashTable struct
+//***********************************************************************************************************
+restaurantInfo* Hash::getRestaurant()
+{
+    return hashAryPtr->aRestaurant;
+}
+
+//***********************************************************************************************************
+// Definition of getRestaurant
+// Returns pointer to aRestaurant in hashTable struct
+//***********************************************************************************************************
+collisionTable* Hash::getCollision(int hashIndex)
+{
+    return hashAryPtr[hashIndex].aCollision;
+}
+
+//***********************************************************************************************************
+// Definition of getNumberOfRestaurantsInCollisionTable
+// Returns number of nodes in the collision table. - should I even be doing this? 
+//***********************************************************************************************************
+int Hash::getNumberRestaurantsInCollisionTable(int arrayIndex)
+{
+    return hashAryPtr[arrayIndex].numRestaurants;
+}
+
+//***********************************************************************************************************
 // Definition of insertHash
 //
 //***********************************************************************************************************
@@ -373,6 +409,7 @@ void Hash::printHashTableSequence() const
 // Definition of function saveToFile.
 // Writes to file from the hash table.
 //**************************************************
+/*
 bool Hash::saveToFile()
 {
     ofstream outFile;
@@ -425,12 +462,6 @@ bool Hash::saveToFile()
             collisionPtr = hashAryPtr[i].aCollision->getNextCollision();
 
             }
-            
-            /*
-             // Insert the restaurant in the collision table
-             hashAryPtr[hashNum].aCollision->insertCollision(tRestaurant, hashAryPtr[hashNum].numRestaurants,
-             hashAryPtr[hashNum].aCollision);
-             */
         }
     }
 
@@ -441,7 +472,7 @@ bool Hash::saveToFile()
 
     return true;
 }
-
+*/
 
 //***********************************************************************************************************
 // Definition of printInKeySequence
