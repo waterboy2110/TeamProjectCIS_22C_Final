@@ -277,7 +277,7 @@ BinaryNode* BinarySearchTree::removeLeftmostNode(BinaryNode* root, restaurantInf
 // Definition of function saveToFile.
 // Writes to file from the BST.
 //**************************************************
-bool BinarySearchTree::saveToFile(BinaryNode *binaryNodePtr)               //was hash with commented out code
+bool BinarySearchTree::saveToFile(BinaryNode *binaryNodePtr)
 {
     ofstream outFile;
     string fileName ="RestaurantsOutfile.txt";

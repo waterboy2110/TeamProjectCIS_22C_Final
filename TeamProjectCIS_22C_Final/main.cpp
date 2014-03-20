@@ -40,7 +40,6 @@ void operationManager(listHead *aList, char tUserInput);
 int checkValidStreetNum(string num);
 void PrintIndentedTreeManager(listHead *aList);
 bool searchBSTManager(listHead *aList);
-bool saveToFile(BinaryNode *BinaryNodePtr);
 
 int main()
 {
@@ -71,7 +70,8 @@ int main()
     }
 
     // Save to file on exit
-    restaurants->getBSTPtr()->saveToFile( restaurants->getBSTPtr()->getroot());
+    if(!restaurants->getBSTPtr()->saveToFile( restaurants->getBSTPtr()->getroot()))
+        cout << "Save to file failed\n";
     
     cout << "\n======================== T H A N K  Y O U =========================\n";
 }
