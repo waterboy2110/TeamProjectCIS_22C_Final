@@ -46,7 +46,7 @@ bool collisionTable::insertCollision(restaurantInfo *collisionPtr, int hashNum, 
     
     previousNode = nullptr;
     
-
+    // Move the pointer forward until we have reached the end
     while (nodePtr != nullptr)
     {
         previousNode = nodePtr;

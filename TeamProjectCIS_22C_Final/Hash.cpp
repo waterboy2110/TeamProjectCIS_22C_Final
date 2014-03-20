@@ -378,6 +378,7 @@ bool Hash::saveToFile()
     ofstream outFile;
     string fileName ="RestaurantsOutfile.txt";
     bool success = true;
+    collisionTable *collisionPtr = NULL;
     
     // Open file to write, if unable, display error and exit with false
     outFile.open(fileName);
@@ -400,16 +401,29 @@ bool Hash::saveToFile()
         
         if (hashAryPtr[i].numRestaurants > 1)
         {
+            collisionPtr = hashAryPtr[i].aCollision;
+            
             cout << "DEBUG in saveToFile: " << hashAryPtr[i].numRestaurants << endl;
-            //while(hashAryPtr[i].aCollision->getNextCollision() != NULL)
-                cout << hashAryPtr[i].aCollision->getNextCollision()->getRestaurantInfo() << endl;
-           
-            // while(hashAryPtr[i].aCollision->getNextCollision() != NULL)
+            
+            for(int j = 0; j < hashAryPtr[i].numRestaurants -1; j++ )
             {
+                
+                
+            //while(hashAryPtr[i].aCollision->getNextCollision() != NULL)
+            //cout << hashAryPtr[i].aCollision->getRestaurantInfo()->getName() << endl;
+            //cout << hashAryPtr[i].aCollision->getNextCollision()->getRestaurantInfo()->getName() << endl;
+
+            cout << collisionPtr->getRestaurantInfo()->getName() << endl;
+
+           
+           
             outFile << hashAryPtr[i].aCollision->getRestaurantInfo()->getName();
             outFile << to_string(hashAryPtr[i].aCollision->getRestaurantInfo()->getNumber()) << endl;
             outFile << hashAryPtr[i].aCollision->getRestaurantInfo()->getStreet();
             outFile << hashAryPtr[i].aCollision->getRestaurantInfo()->getType();
+                
+            collisionPtr = hashAryPtr[i].aCollision->getNextCollision();
+
             }
             
             /*

@@ -68,7 +68,7 @@ int main()
         // Get user's input
         input = getUserInput();
     }
-    
+
     hashPtr->saveToFile();          // Save to file on exit
     
     cout << "\n======================== T H A N K  Y O U =========================\n";
