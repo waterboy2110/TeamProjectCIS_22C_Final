@@ -16,6 +16,7 @@
 #include "Hash.h"
 #include <fstream>
 #include <vector>
+
 using namespace std;
 
 class BinarySearchTree
@@ -23,21 +24,20 @@ class BinarySearchTree
     //friend class Hash;
 private:
     
-    BinaryNode* RootPtr;
+    BinaryNode* RootPtr; //Pointer to BinaryNode
 public:
-    BinarySearchTree();
+    BinarySearchTree(); //constructor
     BinaryNode* getroot()const;
-    bool addNode(restaurantInfo* RestaurantInfoPtr);
-    void printIndentedList(BinaryNode* root, int i)const;
-    
-    BinaryNode* SearchName(BinaryNode* root, string name)const;
-       
-    //bool RemoveByAdressNumber(int addressNum, string deName);
-   // delete functions
-    bool remove(string deName, Hash* aHashTable);
-    BinaryNode* removeRestaurant(string DeName, BinaryNode* subTreePtr, bool & success, Hash* aHashTable);
-    BinaryNode* removeNode(BinaryNode* root, Hash* aHashTable);
-    BinaryNode* removeLeftmostNode(BinaryNode* root, restaurantInfo*&Arestaurant, Hash* aHashTable );
+    void setRoot(BinaryNode* node){RootPtr = node; };
+    bool addNode(restaurantInfo* RestaurantInfoPtr); //ass new node in BST
+    void printIndentedList(BinaryNode* root, int i)const; //print Indented List
+    BinaryNode* SearchName(BinaryNode* root, string name)const;//Search by restaurant name
+    //bool RemoveByAdressNumber(string addressNum, string deName);// remove node by address number
+    // remove node by restaurant name
+    //bool remove(string deName);
+    BinaryNode* removeRestaurant(string DeName, BinaryNode* subTreePtr, bool & success);
+    BinaryNode* removeNode(BinaryNode* root);
+    BinaryNode* removeLeftmostNode(BinaryNode* root, restaurantInfo*&Arestaurant );//return the most left Node
     bool saveToFile(BinaryNode* rootPtr);
 };
 #endif

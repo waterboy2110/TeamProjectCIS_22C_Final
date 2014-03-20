@@ -1,4 +1,3 @@
-
 //***********************************************************************************************************
 // Specification file for restaurantInfo class
 //
@@ -7,7 +6,9 @@
 
 //***********************************************************************************************************
 // THINGS TO CHANGE:
-// X getters for all private data (to save to file) 
+//
+// - Insert costType string
+// - Change constructor for cost type 
 // - Deconstructor
 //***********************************************************************************************************
 
@@ -28,14 +29,16 @@ private:
     
 public:
     // Constructor
+    restaurantInfo();
     restaurantInfo(string aName, int aNumber, string aStreet, string aType);
     
     // Restaurant info functions
     string getName() const;
     int getNumber() const;
+    void displayRestaurant() const;
+    //to facilitate saving street and type to file.
     string getStreet() const;
     string getType() const;
-    void displayRestaurant() const;
     
 };// End restaurantInfo
 

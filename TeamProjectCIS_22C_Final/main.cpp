@@ -233,7 +233,7 @@ void deleteManager(listHead *aList)
         getline(cin, input);
         
         // Delete BST
-        aList->getBSTPtr()->remove(input, aList->getHashPtr());
+       // aList->getBSTPtr()->remove(input, aList->getHashPtr());
         
         //bool deleteByName = aList->getBSTPtr()->remove(input, aList->getHashPtr());
        /* if(!deleteByName)

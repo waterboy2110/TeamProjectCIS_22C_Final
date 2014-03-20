@@ -8,25 +8,34 @@
 
 #include "BinarySearchTree.h"
 
+//******************************************************************************
+// The constructor set RootPtr to nullptr
+//******************************************************************************
 BinarySearchTree::BinarySearchTree():RootPtr(nullptr){}
 
+//******************************************************************************
+// The funciton getroot return the RootPtr
+//******************************************************************************
 BinaryNode*  BinarySearchTree::getroot()const
 {
     return RootPtr;
 }
-
+//******************************************************************************
+// The funciton addNode has the argument RestaurantInfoPtr which is a pointer
+// to restaurantInfo.
+// In the function, dynamicaly allocate memeroy for newNode
+// If newNode doesn't exist, return false; otherwise, return true and insert
+// newnode in the BST in name order
+//******************************************************************************
 bool BinarySearchTree:: addNode(restaurantInfo* RestaurantInfoPtr)
 {
-    BinaryNode* newNode = new BinaryNode(RestaurantInfoPtr);
+    BinaryNode* newNode = new BinaryNode(RestaurantInfoPtr); //dynamicaly allocate memeroy
     BinaryNode* parent=NULL;
     
-    
-    
-    if(!newNode)
+    if(!newNode) // if no newNode
     {
         return false;
     }
-    
     
     if(!getroot())   // if there is no any node on the tree, make root points to newNode
     {
@@ -36,7 +45,7 @@ bool BinarySearchTree:: addNode(restaurantInfo* RestaurantInfoPtr)
     {
         
         BinaryNode* current = RootPtr;
-        while(current!=nullptr)
+        while(current!=nullptr) // find the right place for newNode to insert
         {
             parent= current;
             
@@ -70,7 +79,14 @@ bool BinarySearchTree:: addNode(restaurantInfo* RestaurantInfoPtr)
     return true;
     
 }
-
+//******************************************************************************
+// The function printIndentefList prints the list
+// looks like a tree diagram with showing the
+// level number.
+// Argument i is for level number, and root is
+// for accessing to member
+// funciton of the class BinaryNode
+//******************************************************************************
 
 void BinarySearchTree::printIndentedList(BinaryNode* root, int i)const
 {
@@ -96,18 +112,20 @@ void BinarySearchTree::printIndentedList(BinaryNode* root, int i)const
         }
     }
 }
-
-
-
+//******************************************************************************
+// The function SearchName search the matching name from argument name, and
+// return its pointer to BinaryNode. When the function dearch the matching name
+// it goes through root, left , and rigth.
+//******************************************************************************
 BinaryNode* BinarySearchTree::SearchName(BinaryNode* root, string name)const
 {
-    if(!root)
+    if(!root)// if no any node exists
     {
-        return nullptr;
+        return nullptr; //return nullptr
         
     }
-    else
-    {
+    else// otherwise...
+    {   // find the mathcing name by comapring the string
         if(name < (root->getrestaurantInfo()->getName()))
         {
             return SearchName(root->getLeftChildPtr(), name);
@@ -121,7 +139,7 @@ BinaryNode* BinarySearchTree::SearchName(BinaryNode* root, string name)const
             }
             else
             {
-                return root;
+                return root; // return root if found
                 
             }
         }
@@ -130,50 +148,55 @@ BinaryNode* BinarySearchTree::SearchName(BinaryNode* root, string name)const
     
 }
 
-
+//******************************************************************************
+// The function RemoveByAdressNumber remove the
+//******************************************************************************
 
 /*
-bool BinarySearchTree::RemoveByAdressNumber(int addressNum, string deName)
-{
-    BinaryNode* tempNode = SearchName(RootPtr , deName);
-    
-    if(tempNode==nullptr)
-    {
-        cout << deName << " is not found"<<endl;
-        return false;
-    }
-    
-    while(tempNode!= nullptr)
-    {
-        cout << tempNode->getrestaurantInfo()->getName()<< " " ;
-        cout << tempNode->getrestaurantInfo()->getNumber()<<endl;
-        tempNode = SearchName(tempNode->getRightChildPtr(), deName);
-        
-    }
-    
-}
-*/
+ bool BinarySearchTree::RemoveByAdressNumber(string addressNum, int deName)
+ {
+ BinaryNode* tempNode = SearchName(RootPtr , deName);
+ 
+ if(tempNode==nullptr)
+ {
+ cout << deName << " is not found"<<endl;
+ return false;
+ }
+ 
+ while(tempNode!= nullptr)
+ {
+ tempNode = SearchName(tempNode->getRightChildPtr(), deName);
+ tempNode->SetRestaurantInfo(nullptr);
+ 
+ }
+ return true;
+ 
+ }*/
 
 
+//******************************************************************************
+//******************************************************************************
 /*****************
  Three clases:
  1) leaves
  2) has only one child
  3) has two children
-*******************/
-bool BinarySearchTree::remove(string deName, Hash* aHashTable)
-{
-      
-    bool DeleteSuccessful = true;
-    while (DeleteSuccessful)
-    {
-        RootPtr = removeRestaurant(deName, RootPtr , DeleteSuccessful, aHashTable);
-        
-    }
-    return DeleteSuccessful;
-}
+ *******************/
+/*bool BinarySearchTree::remove(string deName)
+ {
+ 
+ bool DeleteSuccessful = true;
+ while (DeleteSuccessful)
+ {
+ RootPtr = removeRestaurant(deName, RootPtr , DeleteSuccessful);
+ 
+ }
+ return DeleteSuccessful;
+ }*/
 
-BinaryNode* BinarySearchTree::removeRestaurant(string DeName, BinaryNode* subTreePtr, bool & success,  Hash *aHashTable)
+//******************************************************************************
+//******************************************************************************
+BinaryNode* BinarySearchTree::removeRestaurant(string DeName, BinaryNode* subTreePtr, bool & success)
 {
     if (subTreePtr == nullptr)
     {
@@ -181,11 +204,12 @@ BinaryNode* BinarySearchTree::removeRestaurant(string DeName, BinaryNode* subTre
         success = false;
         return nullptr;
     }
+    
     if (subTreePtr->getrestaurantInfo()->getName() == DeName)
     {
         // Item is in the root of some subtree
         
-        subTreePtr = removeNode(subTreePtr,aHashTable);
+        subTreePtr = removeNode(subTreePtr);
         success = true;
         return subTreePtr;
     }
@@ -193,55 +217,64 @@ BinaryNode* BinarySearchTree::removeRestaurant(string DeName, BinaryNode* subTre
     {
         if (subTreePtr->getrestaurantInfo()->getName() > DeName)
             // Search the left subtree
-            subTreePtr->setLeftChildPtr(removeRestaurant(DeName, subTreePtr->getLeftChildPtr(), success, aHashTable));
+            subTreePtr->setLeftChildPtr(removeRestaurant(DeName, subTreePtr->getLeftChildPtr(), success));
         else
             // Search the right subtree
-            subTreePtr->setRightChildPtr(removeRestaurant(DeName, subTreePtr->getRightChildPtr(),  success, aHashTable));
+            subTreePtr->setRightChildPtr(removeRestaurant(DeName, subTreePtr->getRightChildPtr(),  success));
         
         return subTreePtr;
     }  // end if
-    
-    
 }
-BinaryNode* BinarySearchTree:: removeNode(BinaryNode* root, Hash *aHashTable)
+//******************************************************************************
+//******************************************************************************
+BinaryNode* BinarySearchTree:: removeNode(BinaryNode* root )
 {
     
-    int DeAddressNum;
-    string tempName="ee";
+    string tempName="a";
     
     if (root->isLeaf())
     {
-        DeAddressNum= root->getrestaurantInfo()->getNumber();
         // set pointer to restaurant Info to nullptr
-      
+        // addressNum= root->getrestaurantInfo()->getNumber();
         root->SetRestaurantInfo(nullptr);
-    //    tempName = root->getrestaurantInfo()->getName();
+        
+        //    tempName = root->getrestaurantInfo()->getName();
         delete root;
         root = nullptr;
-        // delete from hash
-        aHashTable->deleteHash(DeAddressNum, tempName);
         
-        return  nullptr; 
+        // delete from hash
+        //  aHashTable->deleteHash(DeAddressNum, tempName);
+        
+        return  nullptr;
     }
     else if (root->getLeftChildPtr() == nullptr)  // Has rightChild only
     {
         BinaryNode* nodeToConnectPtr = root->getRightChildPtr();
-        DeAddressNum= root->getrestaurantInfo()->getNumber();
+        // addressNum= root->getrestaurantInfo()->getNumber();
         // set pointer to restaurant Info to nullptr
         root->SetRestaurantInfo(nullptr);
         delete root;
         root = nullptr;
+        
+        // delete from hash
+        // aHashTable->deleteHash(DeAddressNum, tempName);
+        
         return nodeToConnectPtr;
     }
     else if(root->getRightChildPtr() == nullptr) // Has left child only
     {
         BinaryNode* nodeToConnectPtr = root->getLeftChildPtr();
-        DeAddressNum= root->getrestaurantInfo()->getNumber();
+        //   addressNum= root->getrestaurantInfo()->getNumber();
         // set pointer to restaurant Info to nullptr
         root->SetRestaurantInfo(nullptr);
         
         delete root;
         root = nullptr;
+        
+        // delete from hash
+        //  aHashTable->deleteHash(DeAddressNum, tempName);
+        
+        
         return nodeToConnectPtr;
     }
     else                                             // Has two children
@@ -249,26 +282,27 @@ BinaryNode* BinarySearchTree:: removeNode(BinaryNode* root, Hash *aHashTable)
         
         // Traditional way to remove a value in a node with two children
         restaurantInfo* newrestaurant = nullptr;
-        BinaryNode* deNode = removeLeftmostNode(root->getRightChildPtr(), newrestaurant, aHashTable);
-        DeAddressNum= deNode->getrestaurantInfo()->getNumber();
+        BinaryNode* deNode = removeLeftmostNode(root->getRightChildPtr(), newrestaurant);
+        //   addressNum= root->getrestaurantInfo()->getNumber();
         
         root->setRightChildPtr(deNode);
         root->SetRestaurantInfo(newrestaurant);
         return root;
     }
 }
-
-BinaryNode* BinarySearchTree::removeLeftmostNode(BinaryNode* root, restaurantInfo* &Arestaurant, Hash* aHashTable)
+//******************************************************************************
+//******************************************************************************
+BinaryNode* BinarySearchTree::removeLeftmostNode(BinaryNode* root, restaurantInfo* &Arestaurant)
 {
     
     if (root->getLeftChildPtr() == nullptr)
     {
         Arestaurant = root->getrestaurantInfo();
-        return removeNode(root, aHashTable);
+        return removeNode(root);
     }
     else
     {
-        root->setLeftChildPtr(removeLeftmostNode(root->getLeftChildPtr(), Arestaurant, aHashTable));
+        root->setLeftChildPtr(removeLeftmostNode(root->getLeftChildPtr(), Arestaurant));
         return root;
     }  // end if
 }
@@ -294,7 +328,7 @@ bool BinarySearchTree::saveToFile(BinaryNode *binaryNodePtr)
         return false;
     }
     cout << "Saving File...\n";
-   
+    
     BinaryNode *current = binaryNodePtr;
     while(!done)
     {
@@ -321,7 +355,7 @@ bool BinarySearchTree::saveToFile(BinaryNode *binaryNodePtr)
             }
         }
     }
-
+    
     outFile.close();
     
     if (!success)
@@ -329,7 +363,5 @@ bool BinarySearchTree::saveToFile(BinaryNode *binaryNodePtr)
     
     return true;
 }
-
-
 
 
