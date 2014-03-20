@@ -409,7 +409,6 @@ void Hash::printHashTableSequence() const
 // Definition of function saveToFile.
 // Writes to file from the hash table.
 //**************************************************
-/*
 bool Hash::saveToFile()
 {
     ofstream outFile;
@@ -472,7 +471,7 @@ bool Hash::saveToFile()
 
     return true;
 }
-*/
+
 
 //***********************************************************************************************************
 // Definition of printInKeySequence

@@ -58,7 +58,7 @@ public:
     restaurantInfo* getRestaurant();
     collisionTable* getCollision(int collisionIndex);
     int getNumberRestaurantsInCollisionTable(int arrayIndex);
-    //bool saveToFile();
+    bool saveToFile();
 };
 
 #endif

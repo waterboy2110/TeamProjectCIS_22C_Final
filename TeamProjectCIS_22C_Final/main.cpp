@@ -40,18 +40,19 @@ void operationManager(listHead *aList, char tUserInput);
 int checkValidStreetNum(string num);
 void PrintIndentedTreeManager(listHead *aList);
 bool searchBSTManager(listHead *aList);
-bool saveToFile(Hash *hashAryPtr);
+bool saveToFile(BinaryNode *BinaryNodePtr);
 
 int main()
 {
     char input;
     Hash *hashPtr = nullptr;
-    hashTable *hashAryPtr;
+    hashTable *hashAryPtr;              // delete if not used
     
     cout << "========= R E S T A U R A N T S   I N   C U P E R T I N O =========";
     
     listHead *restaurants = new listHead(hashSize);
     hashPtr = restaurants->getHashPtr();
+    BinaryNode *BinaryNodePtr = restaurants->getBSTPtr()->getroot();
 
     readFile(restaurants);
     
@@ -71,8 +72,8 @@ int main()
         input = getUserInput();
     }
 
-   // hashPtr->saveToFile();          // Save to file on exit
-    saveToFile(hashPtr);
+   hashPtr->saveToFile();          // Save to file on exit
+    //saveToFile(BinaryNodePtr);
     
     cout << "\n======================== T H A N K  Y O U =========================\n";
 }
@@ -81,12 +82,15 @@ int main()
 // Definition of function saveToFile.
 // Writes to file from the hash table.
 //**************************************************
-bool saveToFile(Hash *hashAryPtr)
+bool saveToFile(BinaryNode *binaryNodePtr)               //was hash with commented out code
 {
     ofstream outFile;
     string fileName ="RestaurantsOutfile.txt";
     bool success = true;
-    collisionTable *collisionPtr = NULL;
+    collisionTable *collisionPtr = NULL;        //delete if BST works
+    BinarySearchTree *bstPtr;
+    //BinaryNode *rootPtr = bstPtr->getroot();
+    
     
     // Open file to write, if unable, display error and exit with false
     outFile.open(fileName);
@@ -95,7 +99,63 @@ bool saveToFile(Hash *hashAryPtr)
         cout << "Error opening " << fileName << "!\n";
         return false;
     }
+   
+    if(binaryNodePtr)
+    {
+        outFile << binaryNodePtr->getrestaurantInfo()->getName();
+        outFile << to_string(binaryNodePtr->getrestaurantInfo()->getNumber()) << endl;
+    }
     
+    if(binaryNodePtr->getRightChildPtr())
+    {
+        saveToFile(binaryNodePtr->getRightChildPtr());
+    }
+    
+    if (binaryNodePtr->getLeftChildPtr())
+    {
+        saveToFile(binaryNodePtr->getLeftChildPtr());
+    }
+    
+    
+    
+    
+    
+    /*
+     void BinarySearchTree::printIndentedList(BinaryNode* root, int i)const
+     {
+     if(root)// check if the tree exsits
+     {
+     i++;
+     cout <<i<<". ";                 // print the level number
+     cout << root->getrestaurantInfo()->getName()<<endl;// print data
+     
+     if(root->getRightChildPtr())
+     {
+     for(int g=i; g>0;g--)
+     cout << "     ";              // print the space
+     printIndentedList(root->getRightChildPtr(),i);
+     
+     }
+     if(root->getLeftChildPtr())
+     {
+     for(int g=i; g>0;g--)          // print the space
+     cout << "     ";
+     printIndentedList(root->getLeftChildPtr(),i);
+     
+     }
+     }
+     }
+     */
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /*
     for (int i = 0; i < hashSize; i++)
     {
         if (hashAryPtr[i].getNumberRestaurantsInCollisionTable(i) > 0)
@@ -134,7 +194,7 @@ bool saveToFile(Hash *hashAryPtr)
             }
         }
     }
-    
+    */
     outFile.close();
     
     if (!success)
@@ -478,8 +538,11 @@ void operationManager(listHead *aList, char tUserInput)
                                     {
                                         // Save the file
                                         Hash *hashPtr = aList->getHashPtr();
-                                        //hashPtr->saveToFile();
-                                        saveToFile(hashPtr);
+                                        hashPtr->saveToFile();
+                                        
+                                        //BinaryNode *bstPtr = BinarySearchTree->getroot();
+                                        //saveToFile(bstPtr);
+                                        //cout << "not implemented\n";
                                     }
                                     
                                     else
