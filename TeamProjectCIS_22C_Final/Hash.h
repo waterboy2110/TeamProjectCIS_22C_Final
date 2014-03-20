@@ -13,7 +13,6 @@
 #ifndef Project_3_9_Hash_h
 #define Project_3_9_Hash_h
 
-#include <fstream>
 #include <string>
 #include <iostream>
 #include <iomanip>

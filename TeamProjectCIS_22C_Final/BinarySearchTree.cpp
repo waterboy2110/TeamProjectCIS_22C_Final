@@ -7,8 +7,6 @@
 //
 
 #include "BinarySearchTree.h"
-#include <fstream>
-#include <vector>
 
 BinarySearchTree::BinarySearchTree():RootPtr(nullptr){}
 

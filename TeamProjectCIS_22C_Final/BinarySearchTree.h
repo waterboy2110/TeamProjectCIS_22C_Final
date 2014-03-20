@@ -14,6 +14,8 @@
 #include "BinaryNode.h"
 #include "RestaurantInfo.h"
 #include "Hash.h"
+#include <fstream>
+#include <vector>
 using namespace std;
 
 class BinarySearchTree
