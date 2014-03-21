@@ -1,0 +1,188 @@
+212 New York Pizza
+19998
+Homestead Rd
+Pizza
+ABC
+1289
+Hi
+Yum
+Aijito
+7335
+Bollinger Rd
+Japanese
+Alexander's Steakhouse
+10330
+N Wolfe Rd
+Steakhouses
+BAMBU Desserts & Drinks
+10963
+N Wolfe Rd
+Dessert
+BJ's Restaurant and Brewhouse
+10690
+N De Anza Blvd
+American
+Beard Papa's
+19748
+Stevens Creek Blvd
+Desserts
+Beija Flor Cafe
+19622
+Stevens Creek Blvd
+Dessert
+Bitter+Sweet
+20560
+Town Center Ln
+Coffee
+Black Tie Fine Catering and Desserts
+20450
+Stevens Creek Blvd
+Dessert
+Bobbie's Cafe
+1361
+S De Anza Blvd
+Breakfast
+Boudin SF
+20682
+Stevens Creek Blvd
+American
+Chipotle Mexican Grill
+10385
+S De Anza Blvd
+Mexican
+Cinnabon
+19123
+N Wolfe Rd
+Bakeries
+Coffee Bean Cafe
+10631
+S Foothill Blvd
+Coffee & Tea
+Coffee Society
+21265
+Stevens Creek Blvd
+Coffee & Tea
+Cold Stone Creamery
+11123
+N Wolfe Rd
+Ice Cream & Frozen Yogurt
+Demonstrate Collision Resolution
+70235
+AAA
+A
+Fantasia Coffee & Tea
+10933
+N Wolfe Rd
+Coffee
+Gochi Japanese Fusion Tapas
+19980
+E Homestead Rd
+Japanese 
+Grain D'or Bakery
+10126
+N Wolfe Rd
+Bakeries
+Ike's Lair
+21000
+Stevens Creek Blvd
+Sandwiches
+Kee Wah Bakery
+10370
+S De Anza Blvd
+Bakeries
+La Patisserie
+19758
+Stevens Creek Blvd
+Bakeries
+La Terra Bakery & Cafe
+19960
+Homestead Rd
+Bakeries
+Marina Food
+10122
+Bandley Dr
+Ethnic Food
+Moo Moo Tea House
+20916
+Homestead Rd
+Coffee & Tea
+Noah's Bagels
+20525
+Stevens Creek Blvd
+Bagels
+One Pot Shabu Shabu
+19648
+Stevens Creek Blvd
+Japanese
+Orange Tree
+21267
+Stevens Creek Blvd
+Ice Cream & Frozen Yogurt
+Paris Baguette
+20735
+Stevens Creek Blvd
+Bakery
+Peet's Coffee & Tea
+22350
+Homestead Rd
+Coffee & Tea
+Peet's Coffee & Tea
+20807
+Stevens Creek Blvd
+Coffee & Tea
+Philz Coffee
+20686
+Stevens Creek Blvd
+Coffee
+Quickly
+21269
+Stevens Creek Blvd
+Asian Fusion
+Rio Adobe Southwest Cafe
+10525
+S De Anza Blvd
+Mexican
+Roasted Coffee Bean
+19110
+Stevens Creek Blvd
+Coffee & Tea
+Sheng Kee Bakery
+11122
+Bradley Drive
+Bakeries
+Spring Rice & Crawfish
+10123
+N Wolfe Rd
+Seafood
+Ten Ren Tea
+10881
+N Wolfe Rd
+Coffee and Tea
+Thai Square Restaurant
+21467
+Stevens Creek Blvd
+Thai
+Tpumps
+19959
+Stevens Creek Blvd
+Coffee & Tea
+Venus Cafe
+20956
+W Homestead Rd
+Chinese
+Vua Kho Bo
+10919
+N Wolfe Rd
+Candy Store
+Wingstop
+19620
+Stevens Creek Blvd
+Chicken wings
+Yiassoo
+10660
+S De Anza Blvd
+Greek
+Yogurtland
+19700
+Stevens Creek Blvd
+Ice Cream & Frozen Yogurt
