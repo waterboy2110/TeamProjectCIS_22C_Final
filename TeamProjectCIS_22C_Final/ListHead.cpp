@@ -28,10 +28,11 @@ listHead::listHead(int aArraySize)
 //***********************************************************************************************************
 listHead::~listHead()
 {
-    // Destroy hash
-    //hashPtr->destroyHash();
+    delete BSTPtr;
+    delete hashPtr;
     
-    //delete BSTPtr;
+    BSTPtr = nullptr;
+    hashPtr = nullptr;
     
 }// End deconstructor
 
