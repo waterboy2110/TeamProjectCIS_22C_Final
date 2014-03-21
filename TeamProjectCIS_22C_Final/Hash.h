@@ -1,12 +1,4 @@
 //***********************************************************************************************************
-// Team Project - Restaurants in Cupertino (Group 3)                         3/9/14          Mac OS X - xCode
-//
-// Christina Sok, Yenni Chu, James Agua
-//
-//
-//***********************************************************************************************************
-
-//***********************************************************************************************************
 // Specification file for hash class
 //***********************************************************************************************************
 
@@ -21,7 +13,7 @@
 using namespace std;
 
 #define nullptr 0
-#define hashSize 53
+#define hashSize 101
 
 struct hashTable
 {
@@ -41,18 +33,18 @@ public:
     Hash(int aSize);
     
     // Deconstructor
-    ~Hash();
+    void destroyHash();
     
     // Hash operations
     int hashFunction(int tNum);
     bool insertHash(restaurantInfo *tRestaruant);
     bool deleteHash(int deleteNum, string &deleteName);
     bool searchHash(int searchNum);
+    bool searchForDelete(int searchNum, restaurantInfo *&value);
     void hashStatistics();
     bool addHash(int addNum, restaurantInfo *addRestaruant);
     void printHashTableSequence() const;
-    void printInKeySequence() const;
-    int getTotalRestaurants(){return totalRestaurants;}
+    void printInKeySequence();
 };
 
 #endif

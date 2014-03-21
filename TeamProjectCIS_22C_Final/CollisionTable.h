@@ -1,12 +1,4 @@
 //***********************************************************************************************************
-// Team Project - Restaurants in Cupertino (Group 3)                         3/9/14          Mac OS X - xCode
-//
-// Christina Sok, Yenni Chu, James Agua
-//
-//
-//***********************************************************************************************************
-
-//***********************************************************************************************************
 // Specification file for collisionTable class
 //***********************************************************************************************************
 
@@ -16,34 +8,26 @@
 //#include "Hash.h"
 #include "RestaurantInfo.h"
 
-/*
-struct collisionNode
-{
-    restaurantInfo* cRestaurant;    // Pointer to restaurant info
-    collisionNode* nextC;          // Pointer to next restaurant info
-};*/
-
 class collisionTable
 {
 private:
     restaurantInfo *cRestaurant;    // Pointer to restaurant info
-    collisionTable *nextC;          // Pointer to next restaurant info
+    collisionTable *nextC;          // Pointer to next restaurant info    
     
 public:
-    // Constructors
+    // Constructor
     collisionTable();
-    collisionTable(restaurantInfo *collisionPtr, collisionTable *nextC = NULL);
     
     // Collision table operations
-    bool insertCollision(restaurantInfo *collisionPtr, int hashNum, collisionTable *&ptr);
-    bool deleteCollision(int tStreetNum, collisionTable *ptr);
-    restaurantInfo* getLastCollision(collisionTable *ptr);
+    bool insertCollision(restaurantInfo *collisionPtr, collisionTable *&ptr);
+    bool deleteCollision(int tStreetNum, collisionTable *&ptr, string &tempName, int &tempNumber);
+    restaurantInfo* getFirstCollision();
     restaurantInfo* getRestaurantInfo();
-    collisionTable* getNextCollision();
     bool searchCollisionList(collisionTable *ptr, int searchNum);
     bool searchForAdd(collisionTable *ptr, int addNum);
     void displayCollisionList(collisionTable *ptr);
     restaurantInfo* returnRestaurant(collisionTable *&ptr);
+    restaurantInfo* searchForDelete(collisionTable *ptr, int searchNum, bool &status);
     
 };// End collisionTable
 

@@ -1,20 +1,5 @@
 //***********************************************************************************************************
-// Team Project - Restaurants in Cupertino (Group 3)                         3/9/14          Mac OS X - xCode
-//
-// Christina Sok, Yenni Chu, James Agua
-//
-//
-//***********************************************************************************************************
-
-//***********************************************************************************************************
 // Implementation file for CollisionTable class
-//***********************************************************************************************************
-
-//***********************************************************************************************************
-// THINGS TO CHANGE
-//
-// - make sure no unncecessary paramters (some you do not need to receive a poiinter like get fcns)
-// - remove unnecessary returns (a lot of bools)
 //***********************************************************************************************************
 
 #include "CollisionTable.h"
@@ -32,8 +17,10 @@ collisionTable::collisionTable()
 //***********************************************************************************************************
 // Definition insertCollision
 //
+// insertCollision receives a restaurant object that is to be inserted as well as a pointer to the
+// collision linked-list to be inserted. It will then insert the restaurant accordingly. 
 //***********************************************************************************************************
-bool collisionTable::insertCollision(restaurantInfo *collisionPtr, int hashNum, collisionTable *&ptr)
+bool collisionTable::insertCollision(restaurantInfo *collisionPtr, collisionTable *&ptr)
 {
     collisionTable *newNode;             // A new node
     collisionTable *nodePtr;             // To traverse the list
@@ -46,7 +33,6 @@ bool collisionTable::insertCollision(restaurantInfo *collisionPtr, int hashNum, 
     
     previousNode = nullptr;
     
-    // Move the pointer forward until we have reached the end
     while (nodePtr != nullptr)
     {
         previousNode = nodePtr;
@@ -71,8 +57,11 @@ bool collisionTable::insertCollision(restaurantInfo *collisionPtr, int hashNum, 
 //***********************************************************************************************************
 // Definition of deleteCollision
 //
+// deleteCollision receives a restaurant's address number and a pointer to the apprpriate collision table.
+// If the restaurant to be deleted is found, it will return by referene the restaurant's name and number and
+// return true. If no such restaurant was found, the function will return false.
 //***********************************************************************************************************
-bool collisionTable::deleteCollision(int tStreetNum, collisionTable *ptr)
+bool collisionTable::deleteCollision(int tStreetNum, collisionTable *&ptr, string &tempName, int &tempNumber)
 {
     
     collisionTable *nodePtr;       // To traverse the list
@@ -81,7 +70,7 @@ bool collisionTable::deleteCollision(int tStreetNum, collisionTable *ptr)
     // Initialize nodePtr to head of list
     nodePtr = ptr;
     previousNode = nullptr;
-    
+        
     // Skip all nodes whose code is not equal to the code pointed by pDeleteCode.
     while (nodePtr != nullptr && (nodePtr->cRestaurant->getNumber() != tStreetNum))
     {
@@ -96,13 +85,23 @@ bool collisionTable::deleteCollision(int tStreetNum, collisionTable *ptr)
     // Determine if the first node is the one
     if (!previousNode)
     {
-        ptr = nullptr;
+        tempNumber = nodePtr->cRestaurant->getNumber();
+        tempName = nodePtr->cRestaurant->getName();
+
+        ptr = ptr->nextC;
+        
         delete nodePtr;
+        
+        return true;
     }
     else
     {
         // otherwise (node-to-delete found & not first node)
        // nodeData = nodePtr->country;  // return the deleted data
+        
+        tempNumber = nodePtr->cRestaurant->getNumber();
+        tempName = nodePtr->cRestaurant->getName();
+        
         previousNode->nextC = nodePtr->nextC;
         delete nodePtr;
     }
@@ -111,19 +110,19 @@ bool collisionTable::deleteCollision(int tStreetNum, collisionTable *ptr)
 }
 
 //***********************************************************************************************************
-// Definition of getLastCollision
+// Definition of getFirstCollision
 //
+// This function returns the first collision in the collision linked-list.
 //***********************************************************************************************************
-restaurantInfo* collisionTable::getLastCollision(collisionTable *ptr)
+restaurantInfo* collisionTable::getFirstCollision()
 {
     return cRestaurant;
 }
 
-
 //***********************************************************************************************************
 // Definition of getRestaurantInfo
-// Pre - none
-// Post - Returns restaurant in collision table
+//
+// This function returns the restaurant information.
 //***********************************************************************************************************
 restaurantInfo* collisionTable::getRestaurantInfo()
 {
@@ -131,19 +130,9 @@ restaurantInfo* collisionTable::getRestaurantInfo()
 }
 
 //***********************************************************************************************************
-// Definition of getNextCollision
-// Access method to return pointer to next member in the collision table
-// Pre - none
-// Post - nextC pointer
-//***********************************************************************************************************
-collisionTable* collisionTable::getNextCollision()
-{
-    return nextC;
-}
-
-//***********************************************************************************************************
 // Definition of displayCollisionList
 //
+// This function displays all of the restaurant infomration stored in the collision list.
 //***********************************************************************************************************
 bool collisionTable::searchCollisionList(collisionTable *ptr, int searchNum)
 {
@@ -155,19 +144,22 @@ bool collisionTable::searchCollisionList(collisionTable *ptr, int searchNum)
         if (ptr->cRestaurant->getNumber() == searchNum)
         {
             ptr->cRestaurant->displayRestaurant();
+            
+            return true;
         }
         
         ptr = ptr->nextC;
     }
     
-    return true;
+    return false;
 }
 
 //***********************************************************************************************************
-// Definition of searchForAdd (address)
-// Moves through the collision table and tests for a duplicate address
-// Pre - pointer to the collision table, the int of the address
-// Post - true once duplicate is not found.
+// Definition of searchForAdd
+//
+// This function searches the collision list to see if the restaurant with the received address number
+// already exists in the collision table. If it does, the function will return false. If it doens't the
+// function will return true;
 //***********************************************************************************************************
 bool collisionTable::searchForAdd(collisionTable *ptr, int addNum)
 {
@@ -190,15 +182,13 @@ bool collisionTable::searchForAdd(collisionTable *ptr, int addNum)
 //***********************************************************************************************************
 // Definition of displayCollisionList
 //
+// This function displays the restaurants stored in the collision list received.
 //***********************************************************************************************************
 void collisionTable::displayCollisionList(collisionTable *ptr)
 {
-    collisionTable *pWalk;
-    pWalk = ptr;
-    
     while (ptr != nullptr)
     {
-        pWalk->cRestaurant->displayRestaurant();
+        ptr->cRestaurant->displayRestaurant();
         ptr = ptr->nextC;
     }
 }
@@ -206,10 +196,42 @@ void collisionTable::displayCollisionList(collisionTable *ptr)
 //***********************************************************************************************************
 // Definition of returnRestaurant
 //
+// This function returns the restaurant in the collision list received. 
 //***********************************************************************************************************
-//restaurantInfo* collisionTable::returnRestaurant(collisionTable *&ptr)
-//{
+restaurantInfo* collisionTable::returnRestaurant(collisionTable *&ptr)
+{
+    restaurantInfo *value;
     
-  //  return
+    value = ptr->cRestaurant;
     
-//}
+    ptr = ptr->nextC;
+    
+    return value;
+}
+
+//***********************************************************************************************************
+// Definition of searchDelete
+//
+// This function receives a pointer to a collision list as well as an address number. It then searches the
+// collision list for the restaurant number received. If such a restaurant exists, the function will return
+// a pointer to the restaurant found and return by reference true. If no such restaurant exists, the function
+// will return null pointer and return by reference false.
+//***********************************************************************************************************
+restaurantInfo* collisionTable::searchForDelete(collisionTable *ptr, int searchNum, bool &status)
+{
+    while (ptr != nullptr)
+    {
+        if (ptr->cRestaurant->getNumber() == searchNum)
+        {
+            status = true;
+            return ptr->cRestaurant;
+        }
+        
+        ptr = ptr->nextC;
+    }
+
+    status = false;
+    
+    return nullptr;
+}
+

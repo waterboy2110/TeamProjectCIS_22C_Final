@@ -1,32 +1,33 @@
-//
-//  BinarySearchTree.cpp
-//  Project 3.9
-//
-//  Created by Yenni Chu on 3/11/14.
-//  Copyright (c) 2014 Yenni Chu. All rights reserved.
-//
+//***********************************************************************************************************
+// Implementation file for binary search tree class
+//***********************************************************************************************************
 
 #include "BinarySearchTree.h"
+#include <fstream>
+#include <vector>
 
-//******************************************************************************
-// The constructor set RootPtr to nullptr
-//******************************************************************************
-BinarySearchTree::BinarySearchTree():RootPtr(nullptr){}
+//***********************************************************************************************************
+// Constructor
+//***********************************************************************************************************
+BinarySearchTree::BinarySearchTree():RootPtr(nullptr)
+{
+}
 
-//******************************************************************************
-// The funciton getroot return the RootPtr
-//******************************************************************************
+//***********************************************************************************************************
+// Definition of getRoot
+//***********************************************************************************************************
 BinaryNode*  BinarySearchTree::getroot()const
 {
     return RootPtr;
 }
-//******************************************************************************
+
+//***********************************************************************************************************
 // The funciton addNode has the argument RestaurantInfoPtr which is a pointer
 // to restaurantInfo.
 // In the function, dynamicaly allocate memeroy for newNode
 // If newNode doesn't exist, return false; otherwise, return true and insert
 // newnode in the BST in name order
-//******************************************************************************
+//***********************************************************************************************************
 bool BinarySearchTree:: addNode(restaurantInfo* RestaurantInfoPtr)
 {
     BinaryNode* newNode = new BinaryNode(RestaurantInfoPtr); //dynamicaly allocate memeroy
@@ -79,22 +80,22 @@ bool BinarySearchTree:: addNode(restaurantInfo* RestaurantInfoPtr)
     return true;
     
 }
-//******************************************************************************
+
+//***********************************************************************************************************
 // The function printIndentefList prints the list
 // looks like a tree diagram with showing the
 // level number.
 // Argument i is for level number, and root is
 // for accessing to member
 // funciton of the class BinaryNode
-//******************************************************************************
-
+//***********************************************************************************************************
 void BinarySearchTree::printIndentedList(BinaryNode* root, int i)const
 {
     if(root)// check if the tree exsits
     {
         i++;
         cout <<i<<". ";                 // print the level number
-        cout << root->getrestaurantInfo()->getName()<<endl;// print data
+        cout << root->getrestaurantInfo()->getName() << "   " << root->getrestaurantInfo()->getNumber() <<endl;// print data
         
         if(root->getRightChildPtr())
         {
@@ -112,11 +113,12 @@ void BinarySearchTree::printIndentedList(BinaryNode* root, int i)const
         }
     }
 }
-//******************************************************************************
+
+//***********************************************************************************************************
 // The function SearchName search the matching name from argument name, and
 // return its pointer to BinaryNode. When the function dearch the matching name
 // it goes through root, left , and rigth.
-//******************************************************************************
+//***********************************************************************************************************
 BinaryNode* BinarySearchTree::SearchName(BinaryNode* root, string name)const
 {
     if(!root)// if no any node exists
@@ -148,54 +150,9 @@ BinaryNode* BinarySearchTree::SearchName(BinaryNode* root, string name)const
     
 }
 
-//******************************************************************************
-// The function RemoveByAdressNumber remove the
-//******************************************************************************
 
-/*
- bool BinarySearchTree::RemoveByAdressNumber(string addressNum, int deName)
- {
- BinaryNode* tempNode = SearchName(RootPtr , deName);
- 
- if(tempNode==nullptr)
- {
- cout << deName << " is not found"<<endl;
- return false;
- }
- 
- while(tempNode!= nullptr)
- {
- tempNode = SearchName(tempNode->getRightChildPtr(), deName);
- tempNode->SetRestaurantInfo(nullptr);
- 
- }
- return true;
- 
- }*/
-
-
-//******************************************************************************
-//******************************************************************************
-/*****************
- Three clases:
- 1) leaves
- 2) has only one child
- 3) has two children
- *******************/
-/*bool BinarySearchTree::remove(string deName)
- {
- 
- bool DeleteSuccessful = true;
- while (DeleteSuccessful)
- {
- RootPtr = removeRestaurant(deName, RootPtr , DeleteSuccessful);
- 
- }
- return DeleteSuccessful;
- }*/
-
-//******************************************************************************
-//******************************************************************************
+//***********************************************************************************************************
+//***********************************************************************************************************
 BinaryNode* BinarySearchTree::removeRestaurant(string DeName, BinaryNode* subTreePtr, bool & success)
 {
     if (subTreePtr == nullptr)
@@ -209,6 +166,8 @@ BinaryNode* BinarySearchTree::removeRestaurant(string DeName, BinaryNode* subTre
     {
         // Item is in the root of some subtree
         
+        //cout << "\nROOT OF SUB SOME" << endl;
+        
         subTreePtr = removeNode(subTreePtr);
         success = true;
         return subTreePtr;
@@ -216,17 +175,28 @@ BinaryNode* BinarySearchTree::removeRestaurant(string DeName, BinaryNode* subTre
     else
     {
         if (subTreePtr->getrestaurantInfo()->getName() > DeName)
+        {
             // Search the left subtree
+            //cout << "\nSEARCH LEFT" << endl;
+            
             subTreePtr->setLeftChildPtr(removeRestaurant(DeName, subTreePtr->getLeftChildPtr(), success));
+        }
+
         else
+        {
             // Search the right subtree
+            //cout << "\nSEARCH RIGHT" << endl;
+            
             subTreePtr->setRightChildPtr(removeRestaurant(DeName, subTreePtr->getRightChildPtr(),  success));
+        }
+
         
         return subTreePtr;
     }  // end if
 }
-//******************************************************************************
-//******************************************************************************
+
+//***********************************************************************************************************
+//***********************************************************************************************************
 BinaryNode* BinarySearchTree:: removeNode(BinaryNode* root )
 {
     
@@ -234,6 +204,8 @@ BinaryNode* BinarySearchTree:: removeNode(BinaryNode* root )
     
     if (root->isLeaf())
     {
+        //cout << "\nBST: LEAF";
+        
         // set pointer to restaurant Info to nullptr
         // addressNum= root->getrestaurantInfo()->getNumber();
         root->SetRestaurantInfo(nullptr);
@@ -249,6 +221,9 @@ BinaryNode* BinarySearchTree:: removeNode(BinaryNode* root )
     }
     else if (root->getLeftChildPtr() == nullptr)  // Has rightChild only
     {
+        //cout << "\nBST: RIGHT";
+
+        
         BinaryNode* nodeToConnectPtr = root->getRightChildPtr();
         // addressNum= root->getrestaurantInfo()->getNumber();
         // set pointer to restaurant Info to nullptr
@@ -263,6 +238,9 @@ BinaryNode* BinarySearchTree:: removeNode(BinaryNode* root )
     }
     else if(root->getRightChildPtr() == nullptr) // Has left child only
     {
+        //cout << "\nBST: LEFT";
+
+        
         BinaryNode* nodeToConnectPtr = root->getLeftChildPtr();
         //   addressNum= root->getrestaurantInfo()->getNumber();
         // set pointer to restaurant Info to nullptr
@@ -279,6 +257,8 @@ BinaryNode* BinarySearchTree:: removeNode(BinaryNode* root )
     }
     else                                             // Has two children
     {
+        cout << "\nBST: TWO";
+
         
         // Traditional way to remove a value in a node with two children
         restaurantInfo* newrestaurant = nullptr;
@@ -290,8 +270,9 @@ BinaryNode* BinarySearchTree:: removeNode(BinaryNode* root )
         return root;
     }
 }
-//******************************************************************************
-//******************************************************************************
+
+//***********************************************************************************************************
+//***********************************************************************************************************
 BinaryNode* BinarySearchTree::removeLeftmostNode(BinaryNode* root, restaurantInfo* &Arestaurant)
 {
     
@@ -307,15 +288,16 @@ BinaryNode* BinarySearchTree::removeLeftmostNode(BinaryNode* root, restaurantInf
     }  // end if
 }
 
-//**************************************************
+//***********************************************************************************************************
 // Definition of function saveToFile.
 // Writes to file from the BST.
-//**************************************************
+//***********************************************************************************************************
 bool BinarySearchTree::saveToFile(BinaryNode *binaryNodePtr)
 {
     ofstream outFile;
     string fileName ="RestaurantsOutfile.txt";
     bool success = true;
+    
     bool done = false;
     vector<BinaryNode> vBST;
     
@@ -347,10 +329,10 @@ bool BinarySearchTree::saveToFile(BinaryNode *binaryNodePtr)
             {
                 current = &vBST.back();
                 vBST.pop_back();
-                outFile << current->getrestaurantInfo()->getName();
+                outFile << current->getrestaurantInfo()->getName() << endl;
                 outFile << to_string(current->getrestaurantInfo()->getNumber()) << endl;
-                outFile << current->getrestaurantInfo()->getStreet();
-                outFile << current->getrestaurantInfo()->getType();
+                outFile << current->getrestaurantInfo()->getStreet() << endl;
+                outFile << current->getrestaurantInfo()->getType() << endl;
                 current = current->getRightChildPtr();
             }
         }
@@ -363,5 +345,6 @@ bool BinarySearchTree::saveToFile(BinaryNode *binaryNodePtr)
     
     return true;
 }
+
 
 

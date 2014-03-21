@@ -1,10 +1,9 @@
-//
-//  BinaryNode.h
-//  Project 3.9
-//
-//  Created by Yenni Chu on 3/11/14.
-//  Copyright (c) 2014 Yenni Chu. All rights reserved.
-//
+//***********************************************************************************************************
+// Specification file for binary node class
+// BinaryNode is a class to hold each node of the binary tree. The private members are the left and right
+// child pointers along with a pointer to the restaurant object. Gets and sets are available for all private
+// members as well as a method to return whether a node is a leaf.
+//***********************************************************************************************************
 
 #ifndef __Project_3_9__BinaryNode__
 #define __Project_3_9__BinaryNode__
@@ -32,9 +31,7 @@ public:
     void setLeftChildPtr(BinaryNode* leftPtr);
     void setRightChildPtr(BinaryNode* rightPtr);
     void SetRestaurantInfo (restaurantInfo* restInfo);
-    bool isLeaf()const;
-    // BinaryNode();
-    
+    bool isLeaf()const;    
 };
 
 

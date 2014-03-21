@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
             endingLineNumber = "43"
-            landmarkName = "collisionTable::insertCollision(restaurantInfo *collisionPtr, int hashNum, collisionTable *&amp;ptr)"
+            landmarkName = "collisionTable::insertCollision(restaurantInfo *collisionPtr, collisionTable *&amp;ptr)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -31,7 +31,23 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "282"
             endingLineNumber = "282"
-            landmarkName = "BinarySearchTree:: removeNode(BinaryNode* root )"
+            landmarkName = "BinarySearchTree::removeLeftmostNode(BinaryNode* root, restaurantInfo* &amp;Arestaurant)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TeamProjectCIS_22C_Final/BinarySearchTree.cpp"
+            timestampString = "417031653.329472"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "330"
+            endingLineNumber = "330"
+            landmarkName = "BinarySearchTree::saveToFile(BinaryNode *binaryNodePtr)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

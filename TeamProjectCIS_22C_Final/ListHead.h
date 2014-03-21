@@ -2,14 +2,6 @@
 // Specification file for listHead class
 //***********************************************************************************************************
 
-//***********************************************************************************************************
-// THINGS TO CHANGE:
-//
-// X Add BST pointer
-// - Add deconstructor
-// - rewrite hash stat
-//***********************************************************************************************************
-
 #ifndef Project_3_9_ListHead_h
 #define Project_3_9_ListHead_h
 
@@ -22,14 +14,17 @@
 class listHead
 {
 private:
-    int numRestaurants;  // Number of restaurants
-    int arraySize;       // Size of hash table
-    Hash *hashPtr;    // Pointer to the hash table
-    BinarySearchTree *BSTPtr; // Pointer to the binary search tree
+    int numRestaurants;         // Number of restaurants
+    int arraySize;              // Size of hash table
+    Hash *hashPtr;              // Pointer to the hash table
+    BinarySearchTree *BSTPtr;   // Pointer to the binary search tree
     
 public:
     // Constructor
     listHead(int aArraySize);
+    
+    // Deconstructor
+    ~listHead();
     
     // List Head operations
     int getNumRestaurants() const;

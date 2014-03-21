@@ -7,7 +7,7 @@ Philz Coffee
 Stevens Creek Blvd
 Coffee
 Thai Square Restaurant
-21267 
+21467 
 Stevens Creek Blvd
 Thai
 Donut Wheel
@@ -82,11 +82,119 @@ Wingstop
 19620
 Stevens Creek Blvd
 Chicken wings
-Curry House
-1111 
+Ten Ren Tea
+10881 
+N Wolfe Rd
+Coffee and Tea
+Kee Wah Bakery
+10370 
 S De Anza Blvd
-Japanese
-Curry House
-124
-S De Anza Blvd
-Japanese
+Bakeries
+La Patisserie
+19758 
+Stevens Creek Blvd
+Bakeries
+Beija Flor Cafe
+19622 
+Stevens Creek Blvd
+Dessert
+Black Tie Fine Catering and Desserts
+20450
+Stevens Creek Blvd
+Dessert
+BAMBU Desserts & Drinks
+10963 
+N Wolfe Rd
+Dessert
+Roasted Coffee Bean
+19110 
+Stevens Creek Blvd
+Coffee & Tea
+Coffee Society
+21265
+Stevens Creek Blvd
+Coffee & Tea
+Boudin SF
+20682
+Stevens Creek Blvd
+American
+Starbucks
+20520
+Stevens Creek Blvd
+Coffee & Tea
+Peet's Coffee & Tea
+22350 
+Homestead Rd
+Coffee & Tea
+Venus Cafe
+20956
+W Homestead Rd
+Chinese
+Orange Tree
+21267
+Stevens Creek Blvd
+Ice Cream & Frozen Yogurt
+Grain D'or Bakery
+10126
+N Wolfe Rd
+Bakeries
+BJ's Restaurant and Brewhouse
+10690
+N De Anza Blvd
+American
+Quickly
+21269
+Stevens Creek Blvd
+Asian Fusion
+Sheng Kee Bakery
+11122
+Bradley Drive
+Bakeries
+Vua Kho Bo
+10919
+N Wolfe Rd
+Candy Store
+Noah's Bagels
+20525
+Stevens Creek Blvd
+Bagels
+Marina Food
+10122 
+Bandley Dr
+Ethnic Food
+Yogurtland
+19700 
+Stevens Creek Blvd
+Ice Cream & Frozen Yogurt
+Cold Stone Creamery
+11123
+N Wolfe Rd
+Ice Cream & Frozen Yogurt
+Tpumps
+19959
+Stevens Creek Blvd
+Coffee & Tea
+Cinnabon
+19123 
+N Wolfe Rd
+Bakeries
+Moo Moo Tea House
+20916 
+Homestead Rd
+Coffee & Tea
+Coffee Bean Cafe
+10631 
+S Foothill Blvd
+Coffee & Tea
+Peet's Coffee & Tea
+20807 
+Stevens Creek Blvd
+Coffee & Tea
+Starbucks
+10355 
+N De Anza Blvd
+Coffee & Tea
+Starbucks
+22390 
+Homestead Rd
+Coffee & Tea
