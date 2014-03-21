@@ -33,7 +33,7 @@ public:
     Hash(int aSize);
     
     // Deconstructor
-    void destroyHash();
+    ~Hash();
     
     // Hash operations
     int hashFunction(int tNum);
@@ -45,6 +45,7 @@ public:
     bool addHash(int addNum, restaurantInfo *addRestaruant);
     void printHashTableSequence() const;
     void printInKeySequence();
+    void destroyHash();
 };
 
 #endif

@@ -17,6 +17,15 @@ Hash::Hash(int aSize)
 }// End constructor
 
 //***********************************************************************************************************
+// Deconstructor
+//***********************************************************************************************************
+Hash::~Hash()
+{
+    destroyHash();
+    
+}// End deconstructor
+
+//***********************************************************************************************************
 // Definition of destroyHash
 //
 // This function deletes all of the restaurant pointers stored in the hash array.
@@ -566,13 +575,10 @@ void Hash::printHashTableSequence() const
 void Hash::printInKeySequence()
 {
     collisionTable *ptr;
-    //collisionTable *ptrT;
-
-    //restaurantInfo *tempR;
     
     int count= 0;
     int countP = 0;
-    int p = 1;
+    int p = 0;
     int colCount;
     
     cout << endl;
@@ -586,6 +592,8 @@ void Hash::printInKeySequence()
     }
     
     restaurantInfo *tempArray = new restaurantInfo[totalRestaurants];
+    
+    cout << "\nThere are " << totalRestaurants << " restaurant(s) total.\n\n";
     
     while (count < hashSize)
     {
@@ -606,7 +614,7 @@ void Hash::printInKeySequence()
             
             colCount = 0;
             
-            while (colCount < hashAryPtr[count].numRestaurants-1)
+            while (colCount < hashAryPtr[count].numRestaurants - 1)
             {
                 tempArray[countP] = *hashAryPtr[count].aCollision->returnRestaurant(ptr);
                 
@@ -617,6 +625,13 @@ void Hash::printInKeySequence()
         }
         
         count++;
+    }
+    
+    while ( p < totalRestaurants)
+    {
+        cout << "\n     Restaurant " << p+1 << " of " << totalRestaurants << endl;
+        tempArray[p].displayRestaurant();
+        p++;
     }
     
     int current;
@@ -636,8 +651,11 @@ void Hash::printInKeySequence()
         tempArray[walk+1] = temp;
     }
     
+    p = 0;
+        
     while ( p < totalRestaurants)
     {
+        cout << "\n     Restaurant " << p+1 << " of " << totalRestaurants << endl;
         tempArray[p].displayRestaurant();
         p++;
     }
