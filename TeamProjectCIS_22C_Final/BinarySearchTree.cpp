@@ -1,5 +1,10 @@
 //***********************************************************************************************************
 // Implementation file for binary search tree class
+// Team Project - Restaurants in Cupertino (Group 3)                         3/9/14          Mac OS X - xCode
+//
+// BinaryTree.cpp class implements the methods that provide access to the root of the tree as well as methods
+// for add / remove node, search by name, remove by object (restaurant), print the indented tree and save the
+// tree to a file.
 //***********************************************************************************************************
 
 #include "BinarySearchTree.h"
@@ -8,6 +13,7 @@
 
 //***********************************************************************************************************
 // Constructor
+// Sets the root pointer to nullptr
 //***********************************************************************************************************
 BinarySearchTree::BinarySearchTree():RootPtr(nullptr)
 {
@@ -15,6 +21,8 @@ BinarySearchTree::BinarySearchTree():RootPtr(nullptr)
 
 //***********************************************************************************************************
 // Definition of getRoot
+// Pre none
+// Post - Returns a pointer to root of the tree
 //***********************************************************************************************************
 BinaryNode*  BinarySearchTree::getroot()const
 {
@@ -22,6 +30,7 @@ BinaryNode*  BinarySearchTree::getroot()const
 }
 
 //***********************************************************************************************************
+// Definition of function addNode
 // The funciton addNode has the argument RestaurantInfoPtr which is a pointer
 // to restaurantInfo.
 // In the function, dynamicaly allocate memeroy for newNode
@@ -30,25 +39,24 @@ BinaryNode*  BinarySearchTree::getroot()const
 //***********************************************************************************************************
 bool BinarySearchTree:: addNode(restaurantInfo* RestaurantInfoPtr)
 {
-    BinaryNode* newNode = new BinaryNode(RestaurantInfoPtr); //dynamicaly allocate memeroy
-    BinaryNode* parent=NULL;
+    BinaryNode* newNode = new BinaryNode(RestaurantInfoPtr);                                // Dynamicaly allocate memeroy
+    BinaryNode* parent=NULL;                                                                // And set the parent to null
     
-    if(!newNode) // if no newNode
+    if(!newNode)                                                                            // if no newNode return false
     {
         return false;
     }
     
-    if(!getroot())   // if there is no any node on the tree, make root points to newNode
+    if(!getroot())                                                                          // if there is no any node on the tree, make root points to newNode
     {
-        RootPtr= newNode;    // root is newNodePtr
+        RootPtr= newNode;                                                                   // root is newNodePtr
     }
     else
     {
-        
         BinaryNode* current = RootPtr;
-        while(current!=nullptr) // find the right place for newNode to insert
-        {
-            parent= current;
+        while(current!=nullptr)                                                             // Walk the tree and find the right place for newNode to insert
+        {                                                                                   // based on the restaurant object name. Determine which side of
+            parent= current;                                                                // tree to insert.
             
             if( newNode->getrestaurantInfo()->getName() < current->getrestaurantInfo()->getName() )
             {
@@ -57,145 +65,140 @@ bool BinarySearchTree:: addNode(restaurantInfo* RestaurantInfoPtr)
             else
             {
                 current = current->getRightChildPtr();
-                
             }
         }
         
-        if (parent->getrestaurantInfo()->getName()  > newNode->getrestaurantInfo()->getName())
-            // parent's child pointer points to new node
+        if (parent->getrestaurantInfo()->getName()  > newNode->getrestaurantInfo()->getName())  // parent's child pointer points to new node
         {
-            
             parent->setLeftChildPtr(newNode);
         }
         else
         {
             parent->setRightChildPtr(newNode);
-            
-            
         }
-        
-        
     }
     
-    return true;
+    return true;                                                                                // Success in adding a new node
     
 }
 
 //***********************************************************************************************************
-// The function printIndentefList prints the list
-// looks like a tree diagram with showing the
-// level number.
-// Argument i is for level number, and root is
-// for accessing to member
-// funciton of the class BinaryNode
+// Definition of function printIndentedList
+// The function printIndentefList prints the list in the form of an indented tree showing the level number.
+// The method is recursive and in the recursion a space is passed in to indent the tree.
+// Argument i is for level number, and root is for accessing each member of the class BinaryNode.
+// Pre - A node to the tree and an int for formating the output showing level numbers
+// Post - Tree is printed in a tabbed format with the level of each node displayed for each object.
 //***********************************************************************************************************
 void BinarySearchTree::printIndentedList(BinaryNode* root, int i)const
 {
     if(root)// check if the tree exsits
     {
         i++;
-        cout <<i<<". ";                 // print the level number
-        cout << root->getrestaurantInfo()->getName() << "   " << root->getrestaurantInfo()->getNumber() <<endl;// print data
+        cout <<i<<". ";                                                                     // Print the level number
+        cout << root->getrestaurantInfo()->getName() << "   "                               // Print the restaurent name
+             << root->getrestaurantInfo()->getNumber() <<endl;                              // Print the restaurant number (the key)
         
-        if(root->getRightChildPtr())
+        if(root->getRightChildPtr())                                                        // if a right child exists
         {
             for(int g=i; g>0;g--)
-                cout << "     ";              // print the space
-            printIndentedList(root->getRightChildPtr(),i);
+                cout << "     ";                                                            // print the spaces
+            printIndentedList(root->getRightChildPtr(),i);                                  // and recursively call this function
             
         }
-        if(root->getLeftChildPtr())
+        if(root->getLeftChildPtr())                                                         // if a left child exists
         {
-            for(int g=i; g>0;g--)          // print the space
-                cout << "     ";
-            printIndentedList(root->getLeftChildPtr(),i);
-            
+            for(int g=i; g>0;g--)
+                cout << "     ";                                                            // print the spaces
+            printIndentedList(root->getLeftChildPtr(),i);                                   // and recursively call this function
         }
     }
 }
 
 //***********************************************************************************************************
-// The function SearchName search the matching name from argument name, and
-// return its pointer to BinaryNode. When the function dearch the matching name
-// it goes through root, left , and rigth.
+// Definition of function SearchName
+// The function SearchName searches for a matching name from argument passed in by the caller and returns
+// a pointer to a BinaryNode. The function performs the search in a pre-order traversal using recursion.
+// Pre - A pointer to the root of the three (or subtree) and the name of the restaurant.
+// Post - A pointer to the matching node in the tree.
 //***********************************************************************************************************
 BinaryNode* BinarySearchTree::SearchName(BinaryNode* root, string name)const
 {
-    if(!root)// if no any node exists
+    if(!root)                                                                                  // if no any node exists we are done, exit.
     {
-        return nullptr; //return nullptr
-        
+        return nullptr;
     }
-    else// otherwise...
-    {   // find the mathcing name by comapring the string
-        if(name < (root->getrestaurantInfo()->getName()))
+    
+    else                                                                                        // Search the tree by name:
+    {
+        if(name < (root->getrestaurantInfo()->getName()))                                       // If the target name is less than the search name
         {
-            return SearchName(root->getLeftChildPtr(), name);
+            return SearchName(root->getLeftChildPtr(), name);                                   // recursively call this funciton with a left child pointer
         }
         else
         {
-            
-            if(name > (root->getrestaurantInfo()->getName()))
+            if(name > (root->getrestaurantInfo()->getName()))                                   // If the target name is larger than the search name
             {
-                return SearchName(root->getRightChildPtr(), name);
+                return SearchName(root->getRightChildPtr(), name);                              // recursively call this function with the right child pointer
             }
             else
             {
-                return root; // return root if found
-                
+                return root;                                                                      // return root if found (base case)
             }
         }
-        
     }
-    
 }
 
-
 //***********************************************************************************************************
+// Definition of function removeRestaurant
+// The funciton removeRestaurant recursively searches for the target in the tree. When the target is found
+// the left or right pointers are updated by calling setLeftChildPtr / setRightChildPtr from the subTreePtr
+// passes into each recursive call. Once the target is located removeResturant is called to delete the object.
+// Pre - A string for the target name, a node to represent the tree (or subtree) and success or failure.
+// Post - Returns a pointer to a node in the tree.
 //***********************************************************************************************************
 BinaryNode* BinarySearchTree::removeRestaurant(string DeName, BinaryNode* subTreePtr, bool & success)
 {
     if (subTreePtr == nullptr)
     {
-        // Not found here
-        success = false;
+        success = false;                                                                            // If pointer is null return nullptr
         return nullptr;
     }
     
-    if (subTreePtr->getrestaurantInfo()->getName() == DeName)
+    if (subTreePtr->getrestaurantInfo()->getName() == DeName)                                       // If we have found our target in the tree
     {
-        // Item is in the root of some subtree
-        
-        //cout << "\nROOT OF SUB SOME" << endl;
-        
-        subTreePtr = removeNode(subTreePtr);
+        subTreePtr = removeNode(subTreePtr);                                                        // remove the target and return the subTree
         success = true;
         return subTreePtr;
     }
     else
     {
-        if (subTreePtr->getrestaurantInfo()->getName() > DeName)
-        {
-            // Search the left subtree
-            //cout << "\nSEARCH LEFT" << endl;
-            
+        if (subTreePtr->getrestaurantInfo()->getName() > DeName)                                    // Otherwise look to the left of the tree for the target
+        {                                                                                           // and recursively call this function with the left child pointer
             subTreePtr->setLeftChildPtr(removeRestaurant(DeName, subTreePtr->getLeftChildPtr(), success));
         }
-
-        else
-        {
-            // Search the right subtree
-            //cout << "\nSEARCH RIGHT" << endl;
-            
+        else                                                                                        // Look to the right side of the tree
+        {                                                                                           // and call this function with the right child pointer
             subTreePtr->setRightChildPtr(removeRestaurant(DeName, subTreePtr->getRightChildPtr(),  success));
         }
-
         
-        return subTreePtr;
-    }  // end if
+    return subTreePtr;                                                                               // return a node pointer to the subtree
+    } // end else
 }
 
 //***********************************************************************************************************
+// Definition of removeNode
+// The removeNode function is a helper function to the removeRestaurant method. This funciton determines if a
+// node is a leaf, has a right child or has two children. When the target node is found the links to the parent
+// and child are updated and the node is deleted. If the node is a leaf (has null left and right pointers) it
+// will be deleted. If the node has only a right pointer the links are updated and the node is deleted. If the
+// node has both left and right the method removeLeftMostNode is called against the right child and the links
+// to the restaurant and node are updated.
+// Pre - A pointer to the root of the tree.
+// Post - The target node is removed. The links are updated in the case where the target has children and the
+//        node is deleted.
+// ** Not implemented as of this writing ** The hashTables delete methods are also called so that the tree
+//                                          and the table remain in sync.
 //***********************************************************************************************************
 BinaryNode* BinarySearchTree:: removeNode(BinaryNode* root )
 {
@@ -204,93 +207,90 @@ BinaryNode* BinarySearchTree:: removeNode(BinaryNode* root )
     
     if (root->isLeaf())
     {
-        //cout << "\nBST: LEAF";
+        // addressNum= root->getrestaurantInfo()->getNumber();                                          // **REMOVE IF NOT USED**
+        root->SetRestaurantInfo(nullptr);                                                               // set pointer to restaurantInfo to nullptr
         
-        // set pointer to restaurant Info to nullptr
-        // addressNum= root->getrestaurantInfo()->getNumber();
-        root->SetRestaurantInfo(nullptr);
+        // tempName = root->getrestaurantInfo()->getName();                                             // **REMOVE IF NOT USED**
+        delete root;                                                                                    // delete the root
+        root = nullptr;                                                                                 // and set the pointer to null
         
-        //    tempName = root->getrestaurantInfo()->getName();
-        delete root;
-        root = nullptr;
+        // aHashTable->deleteHash(DeAddressNum, tempName);                                              // delete from hash // **REMOVE IF NOT USED**
         
-        // delete from hash
-        //  aHashTable->deleteHash(DeAddressNum, tempName);
-        
-        return  nullptr;
+        return  nullptr;                                                                                // return a nullptr - the node was a leaf
     }
-    else if (root->getLeftChildPtr() == nullptr)  // Has rightChild only
+    else if (root->getLeftChildPtr() == nullptr)                                                        // Node has rightChild only
     {
         //cout << "\nBST: RIGHT";
 
+        BinaryNode* nodeToConnectPtr = root->getRightChildPtr();                                        // Set the node to connect to the right child
+        // addressNum= root->getrestaurantInfo()->getNumber();                                          // **REMOVE IF NOT USED**
         
-        BinaryNode* nodeToConnectPtr = root->getRightChildPtr();
-        // addressNum= root->getrestaurantInfo()->getNumber();
-        // set pointer to restaurant Info to nullptr
-        root->SetRestaurantInfo(nullptr);
-        delete root;
+        root->SetRestaurantInfo(nullptr);                                                               // set pointer to restaurantInfo to nullptr
+        delete root;                                                                                    // and delete the parent and set the pointer to null
         root = nullptr;
+                                                                                                        // delete from hash
+        // aHashTable->deleteHash(DeAddressNum, tempName);                                              // **REMOVE IF NOT USED**
         
-        // delete from hash
-        // aHashTable->deleteHash(DeAddressNum, tempName);
-        
-        return nodeToConnectPtr;
+        return nodeToConnectPtr;                                                                        // Return the newly connected node
     }
-    else if(root->getRightChildPtr() == nullptr) // Has left child only
+    else if(root->getRightChildPtr() == nullptr)                                                        // Node has left child only
     {
-        //cout << "\nBST: LEFT";
-
+        BinaryNode* nodeToConnectPtr = root->getLeftChildPtr();                                         // set the node to connect to the left child
         
-        BinaryNode* nodeToConnectPtr = root->getLeftChildPtr();
-        //   addressNum= root->getrestaurantInfo()->getNumber();
-        // set pointer to restaurant Info to nullptr
-        root->SetRestaurantInfo(nullptr);
+        //   addressNum= root->getrestaurantInfo()->getNumber();                                        // **REMOVE IF NOT USED**
         
-        delete root;
+        root->SetRestaurantInfo(nullptr);                                                               // set pointer to restaurantInfo to nullptr
+        delete root;                                                                                    // and delete the parent and set the pointer to null
         root = nullptr;
+       
+        //  aHashTable->deleteHash(DeAddressNum, tempName);                                              // delete from hashTable
         
-        // delete from hash
-        //  aHashTable->deleteHash(DeAddressNum, tempName);
-        
-        
-        return nodeToConnectPtr;
+        return nodeToConnectPtr;                                                                         // and return the newly connected pointer
     }
-    else                                             // Has two children
+    else                                                                                                 // The node has two children
     {
-        cout << "\nBST: TWO";
-
-        
-        // Traditional way to remove a value in a node with two children
+        //cout << "\nBST: TWO";
+                                                                                                         // Traditional way to remove a value in a node with two children
         restaurantInfo* newrestaurant = nullptr;
-        BinaryNode* deNode = removeLeftmostNode(root->getRightChildPtr(), newrestaurant);
-        //   addressNum= root->getrestaurantInfo()->getNumber();
+        BinaryNode* deNode = removeLeftmostNode(root->getRightChildPtr(), newrestaurant);                // Assign a new right child pointer to the roots parent
+        //   addressNum= root->getrestaurantInfo()->getNumber();                                         // **REMOVE IF NOT USED**
         
-        root->setRightChildPtr(deNode);
-        root->SetRestaurantInfo(newrestaurant);
+        root->setRightChildPtr(deNode);                                                                  // Set the new node as the parents right child
+        root->SetRestaurantInfo(newrestaurant);                                                          // and update the restaurantInfo and return the root
         return root;
     }
 }
 
 //***********************************************************************************************************
+// Definition of function removeLeftMostNode.
+// The function removeLeftMostNode is a recursive function that calls itself until the parents left pointer is
+// null.
+// Pre - A pointer to the parent node and a pointer to a resturant object
+// Post - Returns a pointer to the target parent.
 //***********************************************************************************************************
 BinaryNode* BinarySearchTree::removeLeftmostNode(BinaryNode* root, restaurantInfo* &Arestaurant)
 {
     
-    if (root->getLeftChildPtr() == nullptr)
+    if (root->getLeftChildPtr() == nullptr)                                                             // Base Case
     {
-        Arestaurant = root->getrestaurantInfo();
+        Arestaurant = root->getrestaurantInfo();                                                        // Assign the parent restaurant object and remove the node
         return removeNode(root);
     }
     else
     {
-        root->setLeftChildPtr(removeLeftmostNode(root->getLeftChildPtr(), Arestaurant));
-        return root;
+        root->setLeftChildPtr(removeLeftmostNode(root->getLeftChildPtr(), Arestaurant));                // else - call this function and set the left child pointer
+        return root;                                                                                    // return the parent
     }  // end if
 }
 
 //***********************************************************************************************************
 // Definition of function saveToFile.
-// Writes to file from the BST.
+// The functon saveToFile save the BST to a file using a vector to queue each element of the tree. For the
+// current pointer keep traversing left child and pushing it into the queue. When a null node is reached pop
+// an element of the queue (back of queue) set it to current and print it. Then set current to right and repeat
+// the process. When the queue is empty you are done processing the tree.
+// Pre - A pointer to the root of the BST
+// Post - Writes to file from the BST.
 //***********************************************************************************************************
 bool BinarySearchTree::saveToFile(BinaryNode *binaryNodePtr)
 {
